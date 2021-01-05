@@ -12,17 +12,68 @@ Study: #B3FD78
 Meditate: #C278FD
 Exercise: #FD8078
 Error: #EFB7EC
+
+font-family: 'Montserrat', sans-serif;
+
 */
 
 
 /*** BODY ***/
 
+body {
+  background-color: #46424D;
+  font-family: 'Montserrat', sans-serif;
+  margin: 0px;
+}
+
+section {
+  background-color: #2B2733;
+}
+
+main {
+  display: flex;
+  flex-direction: row;
+  height: 93vh;
+  justify-content: space-between;
+}
 
 /*** HEADER ***/
 
+h1 {
+  font-size: 1.5em;
+  color: #CBC9CF;
+  height: 60px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin: 0px;
+  font-weight: 300;
+}
+
+h2 {
+  color: #CBC9CF;
+  font-weight: 300;
+}
+
 /*** ACTIVITY SECTION ***/
 
+.activity-section {
+  height: 100%;
+  width: 60vw;
+  border-right: 3px solid #46424D;
+  padding: 0px 20px 100px 20px;
+}
+
 /*** NEW ACTIVITY ***/
+
+.new-activity {
+  background-color: #46424D;
+  box-shadow: 12px 12px 2px 1px #26222D;
+  height: 100%;
+  width: 100%;
+  border-radius: 8px;
+}
 
 /*** FORM ***/
 
@@ -31,3 +82,14 @@ Error: #EFB7EC
 /*** LOG SECTION ***/
 
 /*** PAST ACTIVITY ***/
+
+.past-activity {
+  height: 100%;
+  width: 40vw;
+  padding: 0px 50px 100px 50px;
+}
+
+.past-activity-card {
+  height: 100%;
+  width: 100%;
+}
