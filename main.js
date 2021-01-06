@@ -27,6 +27,12 @@ allCategoryButtons.addEventListener('click', function (event) {
   event.preventDefault();
 
   console.log(event.target)
+
+  if (event.target.className === 'icon-study' || event.target.className === 'icon') {
+    document.querySelector('.icon-study').innerHTML = `
+      <img class='icon' src='./assets/study-active.svg'>Study
+    `
+  }
 })
 
 

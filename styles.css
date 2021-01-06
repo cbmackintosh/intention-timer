@@ -114,6 +114,13 @@ h1 {
   width: 50px;
 }
 
+.icon-study:hover,
+.icon-study:active,
+.icon-study:focus {
+  border: 5px solid #B3FD78;
+  outline: 0;
+}
+
 .first-question {
   padding-top: 5%;
 }
