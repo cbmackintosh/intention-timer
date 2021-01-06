@@ -51,16 +51,16 @@ h1 {
   font-weight: 300;
 }
 
-h2 {
+h2, h3 {
   color: #CBC9CF;
-  font-weight: 300;
+  font-weight: 400;
 }
 
 /*** ACTIVITY SECTION ***/
 
 .activity-section {
   height: 100%;
-  width: 60vw;
+  width: 65vw;
   border-right: 3px solid #46424D;
   padding: 0px 20px 100px 20px;
 }
@@ -70,12 +70,92 @@ h2 {
 .new-activity {
   background-color: #46424D;
   box-shadow: 12px 12px 2px 1px #26222D;
-  height: 100%;
+  height: 80%;
   width: 100%;
   border-radius: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 /*** FORM ***/
+
+.form-container {
+  /* border: 2px solid red; */
+  height: 90%;
+  width: 80%;
+  display: inline;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.category-buttons {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.category-buttons > button {
+  background-color: #46424D;
+  border: 2px solid #CBC9CF;
+  border-radius: 10px;
+  font-family: 'Montserrat', sans-serif;
+  color: #FFF;
+  height: 100px;
+  width: 30%;
+}
+
+.category-buttons > button:hover{
+  transform: scale(1.1);
+}
+
+.first-question {
+  padding-top: 5%;
+}
+
+.time-entry-container {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 5%;
+}
+
+.minutes, .seconds {
+  width: 45%;
+}
+
+input {
+  height: 50px;
+  width: 100%;
+  background-color: #46424D;
+  border: none;
+  border-bottom: 1px solid white;
+  color: #CBC9CF;
+  font-size: 20px;
+}
+
+::-webkit-input-placeholder {
+  color: #CBC9CF;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 15px;
+}
+
+.start-button-container {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  padding-top: 5%;
+}
+
+.start-activity {
+  background-color: white;
+  border-radius: 5px;
+  border: none;
+  height: 35px;
+  width: 25%;
+  font-family: 'Montserrat', sans-serif;
+  color: #46424D;
+  font-weight: bold;
+}
 
 /*** CURRENT ACTIVITY ***/
 
@@ -85,11 +165,27 @@ h2 {
 
 .past-activity {
   height: 100%;
-  width: 40vw;
+  width: 35vw;
   padding: 0px 50px 100px 50px;
 }
 
-.past-activity-card {
+.past-activity-log {
   height: 100%;
   width: 100%;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  /* margin-top: 40px; */
+}
+
+/*** OTHER ***/
+
+button:hover {
+  cursor: pointer;
+}
+
+p {
+  font-family: 'Montserrat', sans-serif;
+  color: #CBC9CF;
+  margin: 5px;
 }
