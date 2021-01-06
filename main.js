@@ -24,13 +24,18 @@ var meditateButton = document.querySelector('.icon-meditate');
 
 // event listener for buttons (change color of font and change image)
 allCategoryButtons.addEventListener('click', function (event) {
-  event.preventDefault();
-
-  console.log(event.target)
 
   if (event.target.className === 'icon-study' || event.target.className === 'icon') {
     document.querySelector('.icon-study').innerHTML = `
       <img class='icon' src='./assets/study-active.svg'>Study
+    `
+  } else if (event.target.className === 'icon-exercise' || event.target.className === 'icon') {
+    document.querySelector('.icon-exercise').innerHTML = `
+      <img class='icon' src='./assets/exercise-active.svg'>Exercise
+    `
+  } else if (event.target.className === 'icon-meditate' || event.target.className === 'icon') {
+    document.querySelector('.icon-meditate').innerHTML = `
+      <img class='icon' src='./assets/meditate-active.svg'>Meditate
     `
   }
 })

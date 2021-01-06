@@ -117,9 +117,27 @@ h1 {
 .icon-study:hover,
 .icon-study:active,
 .icon-study:focus {
-  border: 5px solid #B3FD78;
+  border: 2px solid #B3FD78;
   outline: 0;
+  color: #B3FD78;
 }
+
+.icon-exercise:hover,
+.icon-exercise:active,
+.icon-exercise:focus {
+  border: 2px solid #FD8078;
+  outline: 0;
+  color: #FD8078;
+}
+
+.icon-meditate:hover,
+.icon-meditate:active,
+.icon-meditate:focus {
+  border: 2px solid #C278FD;
+  outline: 0;
+  color: #C278FD;
+}
+
 
 .first-question {
   padding-top: 5%;
