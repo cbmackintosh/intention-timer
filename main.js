@@ -15,7 +15,23 @@ var activityMinutes = document.getElementById('activity-minutes');
 var activitySeconds = document.getElementById('activity-seconds');
 var startActivityButton = document.querySelector('.start-activity');
 var startStopButton = document.querySelector('.start-stop-button');
+var allCategoryButtons = document.querySelector('.category-buttons');
+var studyButton = document.querySelector('.icon-study');
+var exerciseButton = document.querySelector('.icon-exercise');
+var meditateButton = document.querySelector('.icon-meditate');
+// ======================================
 
+
+// event listener for buttons (change color of font and change image)
+allCategoryButtons.addEventListener('click', function (event) {
+  event.preventDefault();
+
+  console.log(event.target)
+})
+
+
+
+// ======================================
 startActivityButton.addEventListener('click', function(e) {
   e.preventDefault();
   console.log(e)
@@ -48,7 +64,7 @@ startActivityButton.addEventListener('click', function(event) {
     console.log('START STOP BUTTON IS FUNCTIONAL')
   }
 
-  
+
 })
 
 function slugify(str) {
