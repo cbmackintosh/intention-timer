@@ -18,27 +18,38 @@ var startStopButton = document.querySelector('.start-stop-button');
 
 startActivityButton.addEventListener('click', function(e) {
   e.preventDefault();
+  console.log(e)
 
   var slug = slugify(activityTask.value)
   console.log(activityTask.value)
 
   // put this into an array for cards on the past activities section
-  var newActivity = new Activity('study', activityTask.value, activityMinutes.value, activitySeconds.value, false, slug)
-  console.log(newActivity)
+  // var newActivity = new Activity('study', activityTask.value, activityMinutes.value, activitySeconds.value, false, slug)
+  // console.log(newActivity)
 
   document.querySelector('.activity-status').innerHTML = `Current Activity`;
   document.querySelector('.new-activity').classList.toggle('hidden');
 
   document.querySelector('.current-activity').classList.toggle('hidden');
 
+  document.querySelector('.current-activity').innerHTML = `
+    <section class="current-container">
+      <h3>${activityTask.value}</h3>
+      <h1>${activityMinutes.value}:${activitySeconds.value}</h1>
+
+      <button class="start-stop-button" type="submit">START</button>
+    </section>
+  `
+
 });
 
-startStopButton.addEventListener('click', function(e) {
-  e.preventDefault();
-
-  console.log('START STOP BUTTON IS FUNCTIONAL')
+startActivityButton.addEventListener('click', function(event) {
+  if (event.target.className === 'start-stop-button') {
+    console.log('START STOP BUTTON IS FUNCTIONAL')
+  }
+  
 })
 
 function slugify(str) {
-  return str.split(' ').join('-')
+  return str.split(' ').join('-').toLowerCase();
 }
