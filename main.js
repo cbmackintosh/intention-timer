@@ -47,6 +47,7 @@ startActivityButton.addEventListener('click', function(event) {
   if (event.target.className === 'start-stop-button') {
     console.log('START STOP BUTTON IS FUNCTIONAL')
   }
+
   
 })
 
