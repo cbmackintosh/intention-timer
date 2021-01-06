@@ -15,31 +15,31 @@
       <section class='activity-section'>
         <h2>New Activity</h2>
         <div class='new-activity'>
-          <div class='form-container'>
+          <form class='form-container'>
             <h3>Select a category</h3>
             <div class='category-buttons'>
-              <button>Study</button>
-              <button>Exercise</button>
-              <button>Meditate</button>
+              <button><img class='icon' src='./assets/study.svg'>Study</button>
+              <button><img class='icon' src='./assets/exercise.svg'>Exercise</button>
+              <button><img class='icon' src='./assets/meditate.svg'>Meditate</button>
             </div>
             <div class='first-question'>
-              <h3>What would you like to accomplish during this time?</h3>
+              <label>What would you like to accomplish during this time?</label>
               <input type='text'>
             </div>
             <div class='time-entry-container'>
               <div class='minutes'>
-                <h3>Minutes</h3>
+                <label>Minutes</label>
                 <input type='number' max='60'  min='0' placeholder='enter minutes here'>
               </div>
               <div class='seconds'>
-                <h3>Seconds</h3>
+                <label>Seconds</label>
                 <input type='number' max='59'  min='0' step='15' placeholder='enter seconds here'>
               </div>
             </div>
             <div class='start-button-container'>
               <button class='start-activity'>START ACTIVITY</button>
             </div>
-          </div>
+          </form>
       </section>
       <section class='past-activity'>
         <h2>Past Activities</h2>
@@ -49,7 +49,7 @@
         </div>
       </section>
     </main>
+    <script type="text/javascript" src="./activity.js"></script>
+    <script type="text/javascript" src="./main.js"></script>
   </body>
-  <script type="text/javascript" src="./activity.js"></script>
-  <script type="text/javascript" src="./main.js"></script>
 </html>

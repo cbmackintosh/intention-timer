@@ -17,13 +17,12 @@ font-family: 'Montserrat', sans-serif;
 
 */
 
-
 /*** BODY ***/
 
 body {
+  margin: 0px;
   background-color: #46424D;
   font-family: 'Montserrat', sans-serif;
-  margin: 0px;
 }
 
 section {
@@ -33,27 +32,25 @@ section {
 main {
   display: flex;
   flex-direction: row;
-  height: 93vh;
   justify-content: space-between;
+  height: 93vh;
+}
+
+h1, h2, h3, label {
+  color: #CBC9CF;
+  font-weight: 400;
 }
 
 /*** HEADER ***/
 
 h1 {
-  font-size: 1.5em;
-  color: #CBC9CF;
-  height: 60px;
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
+  height: 60px;
   margin: 0px;
-  font-weight: 300;
-}
-
-h2, h3 {
-  color: #CBC9CF;
-  font-weight: 400;
+  font-size: 1.5em;
 }
 
 /*** ACTIVITY SECTION ***/
@@ -68,25 +65,24 @@ h2, h3 {
 /*** NEW ACTIVITY ***/
 
 .new-activity {
-  background-color: #46424D;
-  box-shadow: 12px 12px 2px 1px #26222D;
-  height: 80%;
-  width: 100%;
-  border-radius: 8px;
   display: flex;
   justify-content: center;
   align-items: center;
+  height: 80%;
+  width: 100%;
+  background-color: #46424D;
+  box-shadow: 12px 12px 2px 1px #26222D;
+  border-radius: 8px;
 }
 
 /*** FORM ***/
 
 .form-container {
-  /* border: 2px solid red; */
-  height: 90%;
-  width: 80%;
   display: inline;
   flex-direction: column;
   justify-content: center;
+  height: 90%;
+  width: 80%;
 }
 
 .category-buttons {
@@ -96,17 +92,26 @@ h2, h3 {
 }
 
 .category-buttons > button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100px;
+  width: 30%;
   background-color: #46424D;
   border: 2px solid #CBC9CF;
   border-radius: 10px;
   font-family: 'Montserrat', sans-serif;
   color: #FFF;
-  height: 100px;
-  width: 30%;
 }
 
 .category-buttons > button:hover{
   transform: scale(1.1);
+}
+
+.icon {
+  height: 50px;
+  width: 50px;
 }
 
 .first-question {
@@ -126,9 +131,9 @@ h2, h3 {
 input {
   height: 50px;
   width: 100%;
-  background-color: #46424D;
   border: none;
   border-bottom: 1px solid white;
+  background-color: #46424D;
   color: #CBC9CF;
   font-size: 20px;
 }
@@ -140,18 +145,18 @@ input {
 }
 
 .start-button-container {
-  width: 100%;
   display: flex;
   justify-content: flex-end;
+  width: 100%;
   padding-top: 5%;
 }
 
 .start-activity {
-  background-color: white;
-  border-radius: 5px;
-  border: none;
   height: 35px;
   width: 25%;
+  border: none;
+  border-radius: 5px;
+  background-color: white;
   font-family: 'Montserrat', sans-serif;
   color: #46424D;
   font-weight: bold;
@@ -170,12 +175,11 @@ input {
 }
 
 .past-activity-log {
-  height: 100%;
-  width: 100%;
   display: flex;
   flex-direction: column;
+  height: 100%;
+  width: 100%;
   text-align: center;
-  /* margin-top: 40px; */
 }
 
 /*** OTHER ***/
@@ -185,7 +189,46 @@ button:hover {
 }
 
 p {
+  margin: 5px;
   font-family: 'Montserrat', sans-serif;
   color: #CBC9CF;
-  margin: 5px;
 }
+
+.hidden {
+  display: none;
+}
+
+/* ---------organization template:--------------
+
+.selector {
+    --Positioning--
+  position:
+  z-index:
+  top:
+  right:
+
+ --Display & Box Model--
+  display:
+  overflow:
+  box-sizing:
+  width:
+  height:
+  padding:
+  border:
+  margin:
+
+   --Color--
+  background:
+  color:
+
+    --Text--
+  font-family:
+  font-size:
+  line-height:
+  text-align:
+
+   --Other--
+  cursor:
+}
+
+*/
