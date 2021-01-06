@@ -189,3 +189,27 @@ p {
   color: #CBC9CF;
   margin: 5px;
 }
+
+/*** responsiveness functionality ***/
+@media (max-width: 800px) {
+  main {
+    flex-flow: column nowrap;
+
+  }
+
+  .activity-section {
+    /*background: purple;*/
+    height: 100%;
+    width: 95vw;
+
+  }
+
+  .past-activity {
+    width: 100%;
+  }
+
+  .past-activity-log {
+
+  }
+
+}
