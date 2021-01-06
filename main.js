@@ -26,17 +26,14 @@ var meditateButton = document.querySelector('.icon-meditate');
 allCategoryButtons.addEventListener('click', function (event) {
 
   if (event.target.className === 'icon-study' || event.target.className === 'icon') {
-    document.querySelector('.icon-study').innerHTML = `
-      <img class='icon' src='./assets/study-active.svg'>Study
-    `
+    document.querySelector('img.study').classList.toggle('hidden')
+    document.querySelector('img.study-active').classList.toggle('hidden')
   } else if (event.target.className === 'icon-exercise' || event.target.className === 'icon') {
-    document.querySelector('.icon-exercise').innerHTML = `
-      <img class='icon' src='./assets/exercise-active.svg'>Exercise
-    `
+    document.querySelector('img.exercise').classList.toggle('hidden')
+    document.querySelector('img.exercise-active').classList.toggle('hidden')
   } else if (event.target.className === 'icon-meditate' || event.target.className === 'icon') {
-    document.querySelector('.icon-meditate').innerHTML = `
-      <img class='icon' src='./assets/meditate-active.svg'>Meditate
-    `
+    document.querySelector('img.meditate').classList.toggle('hidden')
+    document.querySelector('img.meditate-active').classList.toggle('hidden')
   }
 })
 
