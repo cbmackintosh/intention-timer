@@ -114,25 +114,22 @@ h1 {
   width: 50px;
 }
 
-.icon-study:active,
-.icon-study:focus {
-  border: 2px solid #B3FD78;
+.icon-study-active {
+  border: 2px solid #B3FD78 !important;
   outline: 0;
-  color: #B3FD78;
+  color: #B3FD78 !important;
 }
 
-.icon-exercise:active,
-.icon-exercise:focus {
-  border: 2px solid #FD8078;
+.icon-exercise-active {
+  border: 2px solid #FD8078 !important;
   outline: 0;
-  color: #FD8078;
+  color: #FD8078 !important;
 }
 
-.icon-meditate:active,
-.icon-meditate:focus {
-  border: 2px solid #C278FD;
+.icon-meditate-active {
+  border: 2px solid #C278FD !important;
   outline: 0;
-  color: #C278FD;
+  color: #C278FD !important;
 }
 
 
@@ -214,7 +211,7 @@ input {
   margin-top: 30px;
   height: 200px;
   width: 200px;
-  display: flex; 
+  display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -234,7 +231,7 @@ input {
   background: #CBC9CF;
   font-size: 1em;
   color: #46424D;
-  
+
 }
 /* --------------------------------------------------->> */
 
