@@ -12,6 +12,9 @@
 
 var currentActivity;
 
+var formContainer = document.querySelector('.form-container');
+var timerPage = document.querySelector('.timer-page');
+
 var allCategoryButtons = document.querySelector('.category-buttons');
 var studyButton = document.querySelector('.icon-study');
 var exerciseButton = document.querySelector('.icon-exercise');
@@ -22,6 +25,9 @@ var activityMinutes = document.querySelector('.activity-minutes');
 var activitySeconds = document.querySelector('.activity-seconds');
 var startActivityButton = document.querySelector('.start-activity');
 var startStopButton = document.querySelector('.start-stop-button');
+
+var timerActivityDescription = document.querySelector('.timer-activity-description');
+var timer = document.querySelector('.time');
 
 startActivityButton.addEventListener('click', startActivityFunc)
 
@@ -57,7 +63,18 @@ function deselectButton(activity) {
 
 function startActivityFunc() {
   var activity = new Activity(currentActivity, activityTask.value, activityMinutes.value, activitySeconds.value, false);
-  console.log(activity);
+  displayTimerPage();
+}
+
+function displayTimerPage() {
+  formContainer.classList.add('hidden');
+  timerPage.classList.remove('hidden');
+  timerActivityDescription.innerText = activityTask.value;
+  if (activitySeconds.value < 10) {
+    timer.innerText = `${activityMinutes.value}:0${activitySeconds.value}`;
+  } else {
+    timer.innerText = `${activityMinutes.value}:${activitySeconds.value}`;
+  }
 }
 
 /*
