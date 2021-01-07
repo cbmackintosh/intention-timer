@@ -1,11 +1,11 @@
 class Activity {
-  constructor(category, description, minutes, seconds, completed, id) {
+  constructor(category, description, minutes, seconds, completed) {
     this.category = category;
     this.description = description;
     this.minutes = minutes;
     this.seconds = seconds;
     this.completed = completed;
-    this.id = id;
+    this.id = Date.now();
   }
 
   countdown(minutes, seconds) {
@@ -22,4 +22,4 @@ class Activity {
   }
 };
 
-module.exports = Activity;
+//module.exports = Activity;

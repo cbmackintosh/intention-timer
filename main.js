@@ -10,9 +10,9 @@
 // error handling for button -- don't let user submit if not all info is complete, but only clear
 // fields if submit is performed
 
-var activityTask = document.getElementById('activity-task');
-var activityMinutes = document.getElementById('activity-minutes');
-var activitySeconds = document.getElementById('activity-seconds');
+var activityTask = document.querySelector('.activity-task');
+var activityMinutes = document.querySelector('.activity-minutes');
+var activitySeconds = document.querySelector('.activity-seconds');
 var startActivityButton = document.querySelector('.start-activity');
 var startStopButton = document.querySelector('.start-stop-button');
 var allCategoryButtons = document.querySelector('.category-buttons');
@@ -25,20 +25,21 @@ var meditateButton = document.querySelector('.icon-meditate');
 // event listener for buttons (change color of font and change image)
 allCategoryButtons.addEventListener('click', function (event) {
 
-  if (event.target.className === 'icon-study' || event.target.className === 'icon') {
+  if (event.target.className === 'icon-study' || event.target.className === 'icon study') {
+    console.log(event.target.className);
     document.querySelector('img.study').classList.toggle('hidden')
     document.querySelector('img.study-active').classList.toggle('hidden')
-  } else if (event.target.className === 'icon-exercise' || event.target.className === 'icon') {
+  } else if (event.target.className === 'icon-exercise' || event.target.className === 'icon exercise') {
     document.querySelector('img.exercise').classList.toggle('hidden')
     document.querySelector('img.exercise-active').classList.toggle('hidden')
-  } else if (event.target.className === 'icon-meditate' || event.target.className === 'icon') {
+  } else if (event.target.className === 'icon-meditate' || event.target.className === 'icon meditate') {
     document.querySelector('img.meditate').classList.toggle('hidden')
     document.querySelector('img.meditate-active').classList.toggle('hidden')
   }
 })
 
 
-
+/*
 // ======================================
 startActivityButton.addEventListener('click', function(e) {
   e.preventDefault();
@@ -66,15 +67,26 @@ startActivityButton.addEventListener('click', function(e) {
   `
 
 });
+*/
 
+startActivityButton.addEventListener('click', startActivityFunc)
+
+function startActivityFunc() {
+  var testVariable = new Activity('test', activityTask.value, activityMinutes.value, activitySeconds.value, false);
+  console.log(testVariable);
+}
+
+/*
 startActivityButton.addEventListener('click', function(event) {
   if (event.target.className === 'start-stop-button') {
     console.log('START STOP BUTTON IS FUNCTIONAL')
   }
+*/
 
-
+/*
 })
 
 function slugify(str) {
   return str.split(' ').join('-').toLowerCase();
 }
+*/
