@@ -186,6 +186,23 @@ input {
 
 /*** CURRENT ACTIVITY ***/
 
+/********************/
+.timer-page {
+  border: 2px solid red;
+  display: inline;
+  flex-direction: column;
+  justify-content: center;
+  height: 90%;
+  width: 80%;
+}
+
+.time {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+}
+/*********************/
+
 /*** LOG SECTION ***/
 
 /*** PAST ACTIVITY ***/
