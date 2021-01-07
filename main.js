@@ -16,6 +16,7 @@ var allCategoryButtons = document.querySelector('.category-buttons');
 var studyButton = document.querySelector('.icon-study');
 var exerciseButton = document.querySelector('.icon-exercise');
 var meditateButton = document.querySelector('.icon-meditate');
+
 var activityTask = document.querySelector('.activity-task');
 var activityMinutes = document.querySelector('.activity-minutes');
 var activitySeconds = document.querySelector('.activity-seconds');
@@ -45,7 +46,8 @@ allCategoryButtons.addEventListener('click', function (event) {
 startActivityButton.addEventListener('click', startActivityFunc)
 
 function startActivityFunc() {
-  new Activity(currentActivity, activityTask.value, activityMinutes.value, activitySeconds.value, false);
+  var activity = new Activity(currentActivity, activityTask.value, activityMinutes.value, activitySeconds.value, false);
+  console.log(activity);
 }
 
 /*
