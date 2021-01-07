@@ -23,27 +23,37 @@ var activitySeconds = document.querySelector('.activity-seconds');
 var startActivityButton = document.querySelector('.start-activity');
 var startStopButton = document.querySelector('.start-stop-button');
 
-// ======================================
-
+startActivityButton.addEventListener('click', startActivityFunc)
 
 // event listener for buttons (change color of font and change image)
 allCategoryButtons.addEventListener('click', function (event) {
   if (event.target.className === 'icon-study' || event.target.className === 'icon study') {
-    document.querySelector('img.study').classList.toggle('hidden')
-    document.querySelector('img.study-active').classList.toggle('hidden')
-    currentActivity = 'Study'
+    selectButton('study');
+    deselectButton('exercise');
+    deselectButton('meditate');
   } else if (event.target.className === 'icon-exercise' || event.target.className === 'icon exercise') {
-    document.querySelector('img.exercise').classList.toggle('hidden')
-    document.querySelector('img.exercise-active').classList.toggle('hidden')
-    currentActivity = 'Excercise';
+    deselectButton('study');
+    selectButton('exercise');
+    deselectButton('meditate');
   } else if (event.target.className === 'icon-meditate' || event.target.className === 'icon meditate') {
-    document.querySelector('img.meditate').classList.toggle('hidden')
-    document.querySelector('img.meditate-active').classList.toggle('hidden')
-    currentActivity = 'Meditate'
+    deselectButton('study');
+    deselectButton('exercise');
+    selectButton('meditate');
   }
 })
 
-startActivityButton.addEventListener('click', startActivityFunc)
+function selectButton(activity) {
+  document.querySelector(`img.${activity}`).classList.add('hidden');
+  document.querySelector(`img.${activity}-active`).classList.remove('hidden');
+  document.querySelector(`.icon-${activity}`).classList.add(`icon-${activity}-active`);
+  currentActivity = activity;
+}
+
+function deselectButton(activity) {
+  document.querySelector(`img.${activity}`).classList.remove('hidden');
+  document.querySelector(`img.${activity}-active`).classList.add('hidden');
+  document.querySelector(`.icon-${activity}`).classList.remove(`icon-${activity}-active`);
+}
 
 function startActivityFunc() {
   var activity = new Activity(currentActivity, activityTask.value, activityMinutes.value, activitySeconds.value, false);
