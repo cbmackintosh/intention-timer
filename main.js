@@ -26,6 +26,8 @@ var activitySeconds = document.querySelector('.activity-seconds');
 var startActivityButton = document.querySelector('.start-activity');
 var startStopButton = document.querySelector('.start-stop-button');
 
+var activityErrorMessage = document.querySelector('.activity-error');
+
 var timerActivityDescription = document.querySelector('.timer-activity-description');
 var timer = document.querySelector('.time');
 
@@ -62,8 +64,12 @@ function deselectButton(activity) {
 }
 
 function startActivityFunc() {
-  var activity = new Activity(currentActivity, activityTask.value, activityMinutes.value, activitySeconds.value, false);
-  displayTimerPage();
+  if (!currentActivity || !activityTask.value || !activityMinutes.value  || !activitySeconds.value) {
+    alert("Please complete all fields.")
+  } else {
+    var activity = new Activity(currentActivity, activityTask.value, activityMinutes.value, activitySeconds.value, false);
+    displayTimerPage();
+  }
 }
 
 function displayTimerPage() {
@@ -74,6 +80,17 @@ function displayTimerPage() {
     timer.innerText = `${activityMinutes.value}:0${activitySeconds.value}`;
   } else {
     timer.innerText = `${activityMinutes.value}:${activitySeconds.value}`;
+  }
+  changeTimerColor()
+}
+
+function changeTimerColor() {
+  if (currentActivity === 'study') {
+    document.querySelector('.timer-circle-outline').classList.add('study-color');
+  } else if (currentActivity === 'exercise') {
+    document.querySelector('.timer-circle-outline').classList.add('exercise-color');
+  } else if (currentActivity === 'meditate') {
+    document.querySelector('.timer-circle-outline').classList.add('meditate-color');
   }
 }
 
