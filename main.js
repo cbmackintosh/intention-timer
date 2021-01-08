@@ -9,7 +9,6 @@
 
 // error handling for button -- don't let user submit if not all info is complete, but only clear
 // fields if submit is performed
-
 var currentActivity;
 
 var formContainer = document.querySelector('.form-container');
@@ -34,6 +33,7 @@ var secondsError = document.querySelector('.seconds-error');
 
 var timerActivityDescription = document.querySelector('.timer-activity-description');
 var timer = document.querySelector('.time');
+var startTimerButton = document.querySelector('.timer-circle-copy');
 
 startActivityButton.addEventListener('click', startActivityFunc)
 
@@ -74,7 +74,7 @@ function startActivityFunc() {
     minutesErrorMessage();
     secondsErrorMessage();
   } else {
-    var activity = new Activity(currentActivity, activityTask.value, activityMinutes.value, activitySeconds.value, false);
+    currentActivity = new Activity(currentActivity, activityTask.value, activityMinutes.value, activitySeconds.value, false);
     displayTimerPage();
   }
 }
@@ -124,13 +124,24 @@ function displayTimerPage() {
 }
 
 function changeTimerColor() {
-  if (currentActivity === 'study') {
+  if (currentActivity.category === 'study') {
     document.querySelector('.timer-circle-outline').classList.add('study-color');
-  } else if (currentActivity === 'exercise') {
+  } else if (currentActivity.category === 'exercise') {
     document.querySelector('.timer-circle-outline').classList.add('exercise-color');
-  } else if (currentActivity === 'meditate') {
+  } else if (currentActivity.category === 'meditate') {
     document.querySelector('.timer-circle-outline').classList.add('meditate-color');
   }
+}
+
+startTimerButton.onclick = startTimer;
+
+function startTimer() {
+  startTimerButton.disabled = true;
+  setInterval(elapseOneSecond, 1000);
+}
+
+function elapseOneSecond() {
+  currentActivity.countdown()
 }
 
 function hideElement(element) {
