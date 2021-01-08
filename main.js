@@ -26,6 +26,12 @@ var activitySeconds = document.querySelector('.activity-seconds');
 var startActivityButton = document.querySelector('.start-activity');
 var startStopButton = document.querySelector('.start-stop-button');
 
+//var activityErrorMessage = document.querySelector('.activity-error');
+var buttonError = document.querySelector('.button-error');
+var activityError = document.querySelector('.activity-error');
+var minutesError = document.querySelector('.minutes-error');
+var secondsError = document.querySelector('.seconds-error');
+
 var timerActivityDescription = document.querySelector('.timer-activity-description');
 var timer = document.querySelector('.time');
 
@@ -62,8 +68,47 @@ function deselectButton(activity) {
 }
 
 function startActivityFunc() {
-  var activity = new Activity(currentActivity, activityTask.value, activityMinutes.value, activitySeconds.value, false);
-  displayTimerPage();
+  if (!currentActivity || !activityTask.value || !activityMinutes.value  || !activitySeconds.value) {
+    buttonErrorMessage();
+    activityErrorMessage();
+    minutesErrorMessage();
+    secondsErrorMessage();
+  } else {
+    var activity = new Activity(currentActivity, activityTask.value, activityMinutes.value, activitySeconds.value, false);
+    displayTimerPage();
+  }
+}
+
+function buttonErrorMessage() {
+  if (!currentActivity) {
+    showElement(buttonError);
+  } else {
+    hideElement(buttonError);
+  }
+}
+
+function activityErrorMessage() {
+  if (!activityTask.value) {
+    showElement(activityError);
+  } else {
+    hideElement(activityError);
+  }
+}
+
+function minutesErrorMessage() {
+  if (!activityMinutes.value) {
+    showElement(minutesError);
+  } else {
+    hideElement(minutesError);
+  }
+}
+
+function secondsErrorMessage() {
+  if (!activitySeconds.value) {
+    showElement(secondsError);
+  } else {
+    hideElement(secondsError);
+  }
 }
 
 function displayTimerPage() {
@@ -75,6 +120,25 @@ function displayTimerPage() {
   } else {
     timer.innerText = `${activityMinutes.value}:${activitySeconds.value}`;
   }
+  changeTimerColor()
+}
+
+function changeTimerColor() {
+  if (currentActivity === 'study') {
+    document.querySelector('.timer-circle-outline').classList.add('study-color');
+  } else if (currentActivity === 'exercise') {
+    document.querySelector('.timer-circle-outline').classList.add('exercise-color');
+  } else if (currentActivity === 'meditate') {
+    document.querySelector('.timer-circle-outline').classList.add('meditate-color');
+  }
+}
+
+function hideElement(element) {
+  element.classList.add('hidden');
+}
+
+function showElement(element) {
+  element.classList.remove('hidden');
 }
 
 /*

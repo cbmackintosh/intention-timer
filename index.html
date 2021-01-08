@@ -20,35 +20,39 @@
             <h3>Select a category</h3>
             <div class='category-buttons'>
               <button type="button" class="icon-study">
-                <img class='icon study' src='./assets/study.svg'>
-                <img class='icon study-active hidden' src='./assets/study-active.svg'>
+                <img class='icon study' src='./assets/study.svg' alt='study icon'>
+                <img class='icon study-active hidden' src='./assets/study-active.svg' alt='active study icon'>
                 Study
               </button>
 
               <button type="button" class="icon-exercise">
-                <img class='icon exercise' src='./assets/exercise.svg'>
-                <img class='icon exercise-active hidden' src='./assets/exercise-active.svg'>
+                <img class='icon exercise' src='./assets/exercise.svg' alt='exercise icon'>
+                <img class='icon exercise-active hidden' src='./assets/exercise-active.svg' alt='active exercise icon'>
                 Exercise
               </button>
 
               <button type="button" class="icon-meditate">
-                <img class='icon meditate' src='./assets/meditate.svg'>
-                <img class='icon meditate-active hidden' src='./assets/meditate-active.svg'>
+                <img class='icon meditate' src='./assets/meditate.svg' alt='meditate icon'>
+                <img class='icon meditate-active hidden' src='./assets/meditate-active.svg' alt='active meditate icon'>
                 Meditate
               </button>
             </div>
+            <p class='button-error hidden'><img class='warning' src='./assets/warning.svg'>Please select a category</p>
             <div class='activity'>
-              <label>What would you like to accomplish during this time?</label>
-              <input class='activity-task' type='text'>
+              <label for='activity-task'>What would you like to accomplish during this time?</label>
+              <input class='activity-task' id='activity-task' type='text' placeholder='Describe your activity!'>
+              <p class='activity-error hidden'><img class='warning' src='./assets/warning.svg'>A description is required</p>
             </div>
             <div class='time-entry-container'>
               <div class='minutes'>
-                <label>Minutes</label>
-                <input class='activity-minutes' type='number' max='60'  min='0' placeholder='enter minutes here'>
+                <label for='activity-minutes'>Minutes</label>
+                <input class='activity-minutes' id='activity-minutes' type='number' max='60'  min='0' placeholder='Enter minutes here' onkeydown="return false">
+                <p class='minutes-error hidden'><img class='warning' src='./assets/warning.svg'>This field is required</p>
               </div>
               <div class='seconds'>
-                <label>Seconds</label>
-                <input class='activity-seconds' type='number' max='59'  min='0' step='5' placeholder='enter seconds here'>
+                <label for='activity-seconds'>Seconds</label>
+                <input class='activity-seconds' id='activity-seconds' type='number' max='59'  min='0' step='5' placeholder='Enter seconds here' onkeydown="return false">
+                <p class='seconds-error hidden'><img class='warning' src='./assets/warning.svg'>This field is required</p>
               </div>
             </div>
             <div class='start-button-container'>
@@ -56,10 +60,10 @@
             </div>
           </form>
           <div class='timer-page hidden'>
-            <div class="timer-activity-description">Deep Breathing</div>
-            <div class='time'>00:00</div>
+            <div class="timer-activity-description"></div>
+            <div class='time'></div>
             <div class='timer-circle-outline'>
-              <div class='timer-circle-copy'>START</div>
+              <button class='timer-circle-copy'>START</button>
             </div>
           </div>
         </div>

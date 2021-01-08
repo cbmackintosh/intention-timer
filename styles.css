@@ -147,8 +147,13 @@ h1 {
   width: 45%;
 }
 
+.activity-minutes,
+.activity-seconds {
+  font-size: 2em;
+}
+
 input {
-  height: 50px;
+  height: 40px;
   width: 100%;
   border: none;
   border-bottom: 1px solid white;
@@ -158,9 +163,9 @@ input {
 }
 
 ::-webkit-input-placeholder {
-  color: #CBC9CF;
+  color: #2B2733;
   font-family: 'Montserrat', sans-serif;
-  font-size: 15px;
+  font-size: 14px;
 }
 
 .start-button-container {
@@ -179,6 +184,18 @@ input {
   font-family: 'Montserrat', sans-serif;
   color: #46424D;
   font-weight: bold;
+}
+
+.warning {
+  height: 10px;
+  width: 10px;
+}
+
+.button-error,
+.activity-error,
+.minutes-error,
+.seconds-error {
+  color: #EFB7EC;
 }
 
 /*** CURRENT ACTIVITY ***/
@@ -206,7 +223,6 @@ input {
 }
 
 .timer-circle-outline {
-  border: 3px solid #C278FD;
   border-radius: 50%;
   margin-top: 30px;
   height: 200px;
@@ -220,6 +236,9 @@ input {
 .timer-circle-copy {
   font-size: 1.3em;
   color: #CBC9CF;
+  background: #46424D;
+  border: none;
+  outline: 0;
 }
 
 .timer-log-button {
@@ -231,8 +250,21 @@ input {
   background: #CBC9CF;
   font-size: 1em;
   color: #46424D;
-
 }
+
+.study-color {
+  border: 3px solid #B3FD78;
+}
+
+.exercise-color {
+  border: 3px solid #FD8078;
+}
+
+.meditate-color {
+  border: 3px solid #C278FD;
+}
+
+
 /* --------------------------------------------------->> */
 
 /*** LOG SECTION ***/
