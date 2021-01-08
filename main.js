@@ -9,7 +9,6 @@
 
 // error handling for button -- don't let user submit if not all info is complete, but only clear
 // fields if submit is performed
-
 var currentActivity;
 
 var formContainer = document.querySelector('.form-container');
@@ -134,10 +133,15 @@ function changeTimerColor() {
   }
 }
 
-startTimerButton.addEventListener('click', currentActivity.countdown);
+startTimerButton.onclick = startTimer;
 
 function startTimer() {
-  setInterval(currentActivity.countdown, 1000);
+  startTimerButton.disabled = true;
+  setInterval(elapseOneSecond, 1000);
+}
+
+function elapseOneSecond() {
+  currentActivity.countdown()
 }
 
 function hideElement(element) {

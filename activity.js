@@ -9,24 +9,24 @@ class Activity {
   }
 
   countdown() {
-    console.log(this.minutes, this.seconds);
-    setInterval(function() {
-      if (this.seconds > 0) {
-        this.seconds -= 1;
-        if (this.seconds < 10) {
-          this.seconds = '0' + this.seconds;
-        }
-      } else if (this.minutes > 0 && this.seconds === 0) {
-        this.minutes -= 1;
-        this.seconds = 59;
-      } else if (this.minutes === 0 && this.seconds === 0) {
-        alert('done');
-        this.completed = true;
-        return;
-      }
-    }, 1000);
-    timer.innerText = `${this.minutes}:${this.seconds}`;
+    console.log(this.minutes);
+    console.log(this.seconds);
+    if (this.seconds > 0) {
+      this.seconds -= 1;
+    } else if (this.minutes > 0 && this.seconds === 0) {
+      this.minutes -= 1;
+      this.seconds = 59;
+    } else if (this.minutes === 0 && this.seconds === 0) {
+      this.completed = true;
+      return;
+    }
+    if (this.seconds < 10) {
+      timer.innerText = `${this.minutes}:0${this.seconds}`;
+    } else {
+      timer.innerText = `${this.minutes}:${this.seconds}`;
+    }
   }
+
 
   markComplete() {
 
@@ -36,5 +36,3 @@ class Activity {
 
   }
 };
-
-//module.exports = Activity;
