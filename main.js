@@ -104,6 +104,7 @@ function secondsErrorMessage() {
 };
 
 function displayTimerPage() {
+  startTimerButton.disabled = false; 
   formContainer.classList.add('hidden');
   timerPage.classList.remove('hidden');
   timerActivityDescription.innerText = activityTask.value;
@@ -126,14 +127,16 @@ function changeTimerColor() {
 };
 
 function startTimer() {
+  //need to enable the start button 
+  startTimerButton.disabled = true;
   setInterval(function () {
     if (currentActivity.completed === false) {
       currentActivity.countdown()
-    } else {
-      return;
     }
   }, 1000)
 };
+        
+
 
 function hideElement(element) {
   element.classList.add('hidden');

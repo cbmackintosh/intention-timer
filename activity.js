@@ -18,7 +18,8 @@ class Activity {
       this.seconds = 59;
     } else if (this.minutes === 0 && this.seconds === 0) {
       this.completed = true;
-      return;
+      return startTimerButton.innerText = `COMPLETE!`
+      
     }
     if (this.seconds < 10) {
       timer.innerText = `${this.minutes}:0${this.seconds}`;
