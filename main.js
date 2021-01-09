@@ -1,14 +1,4 @@
 
-// input fields for activity, minutes, and seconds
-// collect that information on submit, with guards against anything other than numbers in the two latter
-
-// start activity button is submit -- update data model with instance of activity class
-// Activity class needs category, description, minutes, seconds, completed, id
-// on click of start activity, hide form and show timer view -- circle on timer should have same color as category
-// will need to create timer view in html
-
-// error handling for button -- don't let user submit if not all info is complete, but only clear
-// fields if submit is performed
 var currentActivity;
 
 var formContainer = document.querySelector('.form-container');
@@ -25,7 +15,7 @@ var activitySeconds = document.querySelector('.activity-seconds');
 var startActivityButton = document.querySelector('.start-activity');
 var startStopButton = document.querySelector('.start-stop-button');
 
-//var activityErrorMessage = document.querySelector('.activity-error');
+//var activityErrorMessage = document.querySelector('.activity-error'); delete?
 var buttonError = document.querySelector('.button-error');
 var activityError = document.querySelector('.activity-error');
 var minutesError = document.querySelector('.minutes-error');
@@ -35,9 +25,10 @@ var timerActivityDescription = document.querySelector('.timer-activity-descripti
 var timer = document.querySelector('.time');
 var startTimerButton = document.querySelector('.timer-circle-copy');
 
-startActivityButton.addEventListener('click', startActivityFunc)
-
 // event listener for buttons (change color of font and change image)
+startActivityButton.addEventListener('click', startActivityFunc);
+startTimerButton.addEventListener('click', startTimer);
+
 allCategoryButtons.addEventListener('click', function (event) {
   if (event.target.className === 'icon-study' || event.target.className === 'icon study') {
     selectButton('study');
@@ -52,23 +43,24 @@ allCategoryButtons.addEventListener('click', function (event) {
     deselectButton('exercise');
     selectButton('meditate');
   }
-})
+});
+
 
 function selectButton(activity) {
   document.querySelector(`img.${activity}`).classList.add('hidden');
   document.querySelector(`img.${activity}-active`).classList.remove('hidden');
   document.querySelector(`.icon-${activity}`).classList.add(`icon-${activity}-active`);
   currentActivity = activity;
-}
+};
 
 function deselectButton(activity) {
   document.querySelector(`img.${activity}`).classList.remove('hidden');
   document.querySelector(`img.${activity}-active`).classList.add('hidden');
   document.querySelector(`.icon-${activity}`).classList.remove(`icon-${activity}-active`);
-}
+};
 
 function startActivityFunc() {
-  if (!currentActivity || !activityTask.value || !activityMinutes.value  || !activitySeconds.value) {
+  if (!currentActivity || !activityTask.value || !activityMinutes.value || !activitySeconds.value) {
     buttonErrorMessage();
     activityErrorMessage();
     minutesErrorMessage();
@@ -77,7 +69,7 @@ function startActivityFunc() {
     currentActivity = new Activity(currentActivity, activityTask.value, activityMinutes.value, activitySeconds.value, false);
     displayTimerPage();
   }
-}
+};
 
 function buttonErrorMessage() {
   if (!currentActivity) {
@@ -85,7 +77,7 @@ function buttonErrorMessage() {
   } else {
     hideElement(buttonError);
   }
-}
+};
 
 function activityErrorMessage() {
   if (!activityTask.value) {
@@ -93,7 +85,7 @@ function activityErrorMessage() {
   } else {
     hideElement(activityError);
   }
-}
+};
 
 function minutesErrorMessage() {
   if (!activityMinutes.value) {
@@ -101,7 +93,7 @@ function minutesErrorMessage() {
   } else {
     hideElement(minutesError);
   }
-}
+};
 
 function secondsErrorMessage() {
   if (!activitySeconds.value) {
@@ -109,7 +101,7 @@ function secondsErrorMessage() {
   } else {
     hideElement(secondsError);
   }
-}
+};
 
 function displayTimerPage() {
   formContainer.classList.add('hidden');
@@ -121,7 +113,7 @@ function displayTimerPage() {
     timer.innerText = `${activityMinutes.value}:${activitySeconds.value}`;
   }
   changeTimerColor()
-}
+};
 
 function changeTimerColor() {
   if (currentActivity.category === 'study') {
@@ -131,71 +123,22 @@ function changeTimerColor() {
   } else if (currentActivity.category === 'meditate') {
     document.querySelector('.timer-circle-outline').classList.add('meditate-color');
   }
-}
-
-startTimerButton.onclick = startTimer;
+};
 
 function startTimer() {
-  startTimerButton.disabled = true;
-  setInterval(elapseOneSecond, 1000);
-}
-
-function elapseOneSecond() {
-  currentActivity.countdown()
-}
+  setInterval(function () {
+    if (currentActivity.completed === false) {
+      currentActivity.countdown()
+    } else {
+      return;
+    }
+  }, 1000)
+};
 
 function hideElement(element) {
   element.classList.add('hidden');
-}
+};
 
 function showElement(element) {
   element.classList.remove('hidden');
-}
-
-/*
-// ======================================
-startActivityButton.addEventListener('click', function(e) {
-  e.preventDefault();
-  console.log(e)
-
-  var slug = slugify(activityTask.value)
-  console.log(activityTask.value)
-
-  // put this into an array for cards on the past activities section
-  // var newActivity = new Activity('study', activityTask.value, activityMinutes.value, activitySeconds.value, false, slug)
-  // console.log(newActivity)
-
-  document.querySelector('.activity-status').innerHTML = `Current Activity`;
-  document.querySelector('.new-activity').classList.toggle('hidden');
-
-  document.querySelector('.current-activity').classList.toggle('hidden');
-
-  document.querySelector('.current-activity').innerHTML = `
-    <section class="current-container">
-      <h3>${activityTask.value}</h3>
-      <h1>${activityMinutes.value}:${activitySeconds.value}</h1>
-
-      <button class="start-stop-button" type="submit">START</button>
-    </section>
-  `
-
-});
-*/
-
-
-
-
-/*
-startActivityButton.addEventListener('click', function(event) {
-  if (event.target.className === 'start-stop-button') {
-    console.log('START STOP BUTTON IS FUNCTIONAL')
-  }
-*/
-
-/*
-})
-
-function slugify(str) {
-  return str.split(' ').join('-').toLowerCase();
-}
-*/
+};

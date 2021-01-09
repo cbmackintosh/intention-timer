@@ -6,7 +6,7 @@ class Activity {
     this.seconds = parseInt(seconds);
     this.completed = completed;
     this.id = Date.now();
-  }
+  };
 
   countdown() {
     console.log(this.minutes);
@@ -25,12 +25,12 @@ class Activity {
     } else {
       timer.innerText = `${this.minutes}:${this.seconds}`;
     }
-  }
+  };
 
 
   markComplete() {
 
-  }
+  };
 
   saveToStorage() {
 
