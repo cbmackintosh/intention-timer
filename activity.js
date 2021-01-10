@@ -18,14 +18,17 @@ class Activity {
       this.seconds = 59;
     } else if (this.minutes === 0 && this.seconds === 0) {
       this.completed = true;
-      return startTimerButton.innerText = `COMPLETE!`
-      
-    }
+      startTimerButton.innerText = `COMPLETE!`
+      showElement(logActivityButton);
+      showElement(newActivityButton);
+      return 
+    };
+
     if (this.seconds < 10) {
       timer.innerText = `${this.minutes}:0${this.seconds}`;
     } else {
       timer.innerText = `${this.minutes}:${this.seconds}`;
-    }
+    };
   };
 
 
