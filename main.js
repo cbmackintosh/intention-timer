@@ -128,6 +128,8 @@ function displayTimerPage() {
   startTimerButton.innerText = 'START';
   formContainer.classList.add('hidden');
   timerPage.classList.remove('hidden');
+  logActivityButton.classList.add('hidden');
+  newActivityButton.classList.add('hidden');
   timerActivityDescription.innerText = activityTask.value;
   if (activitySeconds.value < 10) {
     timer.innerText = `${activityMinutes.value}:0${activitySeconds.value}`;
