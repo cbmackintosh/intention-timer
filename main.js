@@ -1,6 +1,6 @@
 
 var currentActivity;
-
+var activityCards = [];
 var formContainer = document.querySelector('.form-container');
 var timerPage = document.querySelector('.timer-page');
 
@@ -24,10 +24,16 @@ var secondsError = document.querySelector('.seconds-error');
 var timerActivityDescription = document.querySelector('.timer-activity-description');
 var timer = document.querySelector('.time');
 var startTimerButton = document.querySelector('.timer-circle-copy');
+var logActivityButton = document.querySelector('.timer-log-button')
+var newActivityButton = document.querySelector('.create-new-activity-button')
 
-// event listener for buttons (change color of font and change image)
+var pastActivityCards = document.querySelector('.past-activity-log')
+
+
 startActivityButton.addEventListener('click', startActivityFunc);
 startTimerButton.addEventListener('click', startTimer);
+logActivityButton.addEventListener('click', showMyLogs)
+
 
 allCategoryButtons.addEventListener('click', function (event) {
   if (event.target.className === 'icon-study' || event.target.className === 'icon study') {
@@ -68,6 +74,8 @@ function startActivityFunc() {
   } else {
     currentActivity = new Activity(currentActivity, activityTask.value, activityMinutes.value, activitySeconds.value, false);
     displayTimerPage();
+    activityCards.push(currentActivity)
+    console.log(activityCards, 'this is a new card');
   }
 };
 
@@ -104,6 +112,7 @@ function secondsErrorMessage() {
 };
 
 function displayTimerPage() {
+  startTimerButton.disabled = false; 
   formContainer.classList.add('hidden');
   timerPage.classList.remove('hidden');
   timerActivityDescription.innerText = activityTask.value;
@@ -126,14 +135,42 @@ function changeTimerColor() {
 };
 
 function startTimer() {
+  startTimerButton.disabled = true;
   setInterval(function () {
     if (currentActivity.completed === false) {
-      currentActivity.countdown()
-    } else {
-      return;
+      currentActivity.countdown()   
+      //   if (currentActivity.completed === true) {
+    //     showElement(logActivityButton)
+    //   }
+    // }
     }
   }, 1000)
 };
+
+
+
+function showMyLogs() {
+  activityCards.forEach(card => {
+    pastActivityCards.innerHTML = `
+    <div class="card-container">
+      <div class="card-header">
+        <p class="card-category">${currentActivity.category}</p>
+        <p class="card-duration">${currentActivity.minutes} MIN   :   ${currentActivity.seconds} SEC</p>
+        <p class="card-body">${currentActivity.description}</p>
+      </div>
+      <div class="sliver"></div>
+    </div>
+    `
+    if (currentActivity.category === 'study') {
+      document.querySelector('.sliver').classList.add('sliver-green')
+    } else if (currentActivity.category === 'meditate') {
+      document.querySelector('.sliver').classList.add('sliver-purple')
+    } else if (currentActivity.category === 'exercise') {
+      document.querySelector('.sliver').classList.add('sliver-red')
+    }
+  })
+};
+
 
 function hideElement(element) {
   element.classList.add('hidden');
@@ -142,3 +179,4 @@ function hideElement(element) {
 function showElement(element) {
   element.classList.remove('hidden');
 };
+

@@ -1,7 +1,6 @@
 
-/*
 
-COMP GUIDE:
+/* COMP GUIDE:
 
 Main background: #2B2733
 Text on main background: #CBC9CF
@@ -12,11 +11,9 @@ Study: #B3FD78
 Meditate: #C278FD
 Exercise: #FD8078
 Error: #EFB7EC
+font-family: 'Montserrat', sans-serif; */
 
-font-family: 'Montserrat', sans-serif;
-
-*/
-
+/* --------------------------------------------------->> */
 /*** BODY ***/
 
 body {
@@ -40,7 +37,7 @@ h1, h2, h3, label {
   color: #CBC9CF;
   font-weight: 400;
 }
-
+/* --------------------------------------------------->> */
 /*** HEADER ***/
 
 h1 {
@@ -52,7 +49,7 @@ h1 {
   margin: 0px;
   font-size: 1.5em;
 }
-
+/* --------------------------------------------------->> */
 /*** ACTIVITY SECTION ***/
 
 .activity-section {
@@ -61,7 +58,7 @@ h1 {
   border-right: 3px solid #46424D;
   padding: 0px 20px 100px 20px;
 }
-
+/* --------------------------------------------------->> */
 /*** NEW ACTIVITY ***/
 
 .new-activity {
@@ -74,7 +71,7 @@ h1 {
   box-shadow: 12px 12px 2px 1px #26222D;
   border-radius: 8px;
 }
-
+/* --------------------------------------------------->> */
 /*** FORM ***/
 
 .form-container {
@@ -131,7 +128,6 @@ h1 {
   outline: 0;
   color: #C278FD !important;
 }
-
 
 .activity {
   padding-top: 5%;
@@ -198,9 +194,8 @@ input {
   color: #EFB7EC;
 }
 
-/*** CURRENT ACTIVITY ***/
-
 /* --------------------------------------------------->> */
+/*** CURRENT ACTIVITY ***/
 .timer-page {
   /* border: 2px solid red; */
   display: flex;
@@ -266,8 +261,56 @@ input {
 
 
 /* --------------------------------------------------->> */
-
 /*** LOG SECTION ***/
+.card-container {
+  text-align: left;
+  height: 100px;
+  background: #46424D;
+  border-radius: 5px;
+  color: white;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  margin: 10px 0;
+}
+
+.card-header {
+  width: 95%;
+  margin: 10px 15px;
+
+}
+.sliver {
+  height: 30px;
+  border-radius: 2px;
+  margin: 10px 10px 0 0;
+}
+
+.sliver-purple {
+  background: #C278FD;
+  border-right: 2px solid #C278FD;
+  border-left: 2px solid #C278FD;
+}
+
+.sliver-green {
+  background: #B3FD78;
+  border-right: 2px solid #B3FD78;
+  border-left: 2px solid #B3FD78;
+}
+
+.sliver-red {
+  background: #FD8078;
+  border-right: 2px solid #FD8078;
+  border-left: 2px solid #FD8078;
+}
+
+.card-category {
+  font-weight: bold;
+  color: white;
+}
+
+.card-body {
+  margin: 10px 5px;
+}
 
 /*** PAST ACTIVITY ***/
 
@@ -285,6 +328,7 @@ input {
   text-align: center;
 }
 
+/* --------------------------------------------------->> */
 /*** OTHER ***/
 
 button:hover {
@@ -302,7 +346,6 @@ p {
 }
 
 /* ---------organization template:--------------
-
 .selector {
     --Positioning--
   position:
