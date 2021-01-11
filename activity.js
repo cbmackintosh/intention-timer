@@ -33,5 +33,9 @@ class Activity {
   }
 
   saveToStorage() {
+    activityCards.push(this)
+    localStorage.setItem('activityCards', JSON.stringify(activityCards));
+    pastActivityCards.innerHTML = '';
+    showMyLog();
   }
 };

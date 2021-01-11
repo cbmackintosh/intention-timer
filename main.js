@@ -165,11 +165,9 @@ function startTimer() {
 };
 
 function saveActivityToLocalStorage() {
-  activityCards.push(currentActivity)
-  localStorage.setItem('activityCards', JSON.stringify(activityCards));
-  pastActivityCards.innerHTML = '';
-  showMyLog();
+  currentActivity.saveToStorage()
 };
+
 
 function showMyLog() {
   var cards = JSON.parse(localStorage.getItem('activityCards'));
