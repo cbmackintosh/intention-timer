@@ -29,7 +29,7 @@ var newActivityButton = document.querySelector('.create-new-activity-button')
 
 var pastActivityCards = document.querySelector('.past-activity-log')
 
-window.addEventListener('load', showMyLog);
+window.addEventListener('load', checkLocalStorage);
 startActivityButton.addEventListener('click', startActivityFunc);
 startTimerButton.addEventListener('click', startTimer);
 logActivityButton.addEventListener('click', saveActivityToLocalStorage)
@@ -155,38 +155,45 @@ function startTimer() {
     } else {
       clearInterval(interval);
     }
-  }, 1000)
+  }, 1000);
 };
 
 
 
 function saveActivityToLocalStorage() {
-  localStorage.setItem(`${currentActivity.id}`, JSON.stringify(currentActivity));
+  activityCards.push(currentActivity)
+  localStorage.setItem('activityCards', JSON.stringify(activityCards));
+  // localStorage.setItem(`${currentActivity.id}`, JSON.stringify(currentActivity));
   pastActivityCards.innerHTML = '';
   showMyLog();
 }
 
 
 function showMyLog() {
-  for (i = 0; i < localStorage.length; i++) {
-    pastActivityCards.innerHTML += `
-    <div class='card-container'>
-      <div class='card-header'>
-        <p class='card-category'>${JSON.parse(localStorage.getItem(localStorage.key(i))).category}</p>
-        <p class="card-duration">${JSON.parse(localStorage.getItem(localStorage.key(i))).savedMinutes} MIN : ${adjustSeconds(JSON.parse(localStorage.getItem(localStorage.key(i))).savedSeconds)} SEC</p>
-        <p class="card-body">${JSON.parse(localStorage.getItem(localStorage.key(i))).description}</p>
+  var cards = JSON.parse(localStorage.getItem('activityCards'));
+  if (cards != null) {
+    for (i = 0; i < cards.length; i++) {
+      pastActivityCards.innerHTML += `
+      <div class='card-container'>
+        <div class='card-header'>
+          <p class='card-category'>${cards[i].category}</p>
+          <p class="card-duration">${cards[i].savedMinutes} MIN : ${adjustSeconds(cards[i].savedSeconds)} SEC</p>
+          <p class="card-body">${cards[i].description}</p>
+        </div>
+          <div class = "sliver sliver-${cards[i].category}"></div>
+        </div>
       </div>
-        <div class = "sliver-${JSON.parse(localStorage.getItem(localStorage.key(i))).category}">
-      </div>
-    </div>
-    `
-    if (JSON.parse(localStorage.getItem(localStorage.key(i))).category === 'study') {
-      document.querySelector(".sliver-study").classList.add('sliver-green');
-    } else if (JSON.parse(localStorage.getItem(localStorage.key(i))).category === 'meditate') {
-      document.querySelector(".sliver-meditate").classList.add('sliver-purple');
-    } else if (JSON.parse(localStorage.getItem(localStorage.key(i))).category === 'exercise') {
-      document.querySelector('.sliver-exercise').classList.add('sliver-red');
+      `
     }
+  }
+}
+
+function checkLocalStorage() {
+  if (!JSON.parse(localStorage.getItem('activityCards'))) {
+    activityCards = [];
+  } else {
+    activityCards = JSON.parse(localStorage.getItem('activityCards'));
+    showMyLog();
   }
 }
 

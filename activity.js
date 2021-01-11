@@ -8,10 +8,10 @@ class Activity {
     this.savedSeconds = seconds;
     this.completed = completed;
     this.id = Date.now();
+    this.counter = this.seconds;
   };
   countdown() {
-    this.counter = this.seconds
-    // console.log(this.minutes);
+    console.log(this.counter);
     // console.log(this.seconds);
     if (this.seconds < 10) {
       timer.innerText = `${this.minutes}:0${this.seconds}`;
@@ -28,9 +28,10 @@ class Activity {
       this.completed = true;
       showElement(logActivityButton);
       showElement(newActivityButton);
-      this.counter--;
       return startTimerButton.innerText = `COMPLETE!`
-    };
+    } else {
+      this.counter--;
+    }
   };
   // markComplete() {
   // };
