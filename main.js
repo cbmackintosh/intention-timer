@@ -29,10 +29,10 @@ var newActivityButton = document.querySelector('.create-new-activity-button')
 
 var pastActivityCards = document.querySelector('.past-activity-log')
 
-
+window.addEventListener('load', showMyLog);
 startActivityButton.addEventListener('click', startActivityFunc);
 startTimerButton.addEventListener('click', startTimer);
-logActivityButton.addEventListener('click', showMyLogs)
+logActivityButton.addEventListener('click', saveActivityToLocalStorage)
 newActivityButton.addEventListener('click', resetForm);
 
 function resetForm() {
@@ -86,8 +86,6 @@ function startActivityFunc() {
   } else {
     currentActivity = new Activity(currentActivity, activityTask.value, activityMinutes.value, activitySeconds.value, false);
     displayTimerPage();
-    activityCards.push(currentActivity)
-    console.log(activityCards, 'this is a new card');
   }
 };
 
@@ -162,29 +160,43 @@ function startTimer() {
 
 
 
-function showMyLogs() {
-  console.log('showMyLogs');
-  // activityCards.forEach(card => {
-  //   pastActivityCards.innerHTML = `
-  //   <div class="card-container">
-  //     <div class="card-header">
-  //       <p class="card-category">${currentActivity.category}</p>
-  //       <p class="card-duration">${currentActivity.minutes} MIN   :   ${currentActivity.seconds} SEC</p>
-  //       <p class="card-body">${currentActivity.description}</p>
-  //     </div>
-  //     <div class="sliver"></div>
-  //   </div>
-  //   `
-  //   if (currentActivity.category === 'study') {
-  //     document.querySelector('.sliver').classList.add('sliver-green')
-  //   } else if (currentActivity.category === 'meditate') {
-  //     document.querySelector('.sliver').classList.add('sliver-purple')
-  //   } else if (currentActivity.category === 'exercise') {
-  //     document.querySelector('.sliver').classList.add('sliver-red')
-  //   }
-  // })
-};
+function saveActivityToLocalStorage() {
+  localStorage.setItem(`${currentActivity.id}`, JSON.stringify(currentActivity));
+  pastActivityCards.innerHTML = '';
+  showMyLog();
+}
 
+
+function showMyLog() {
+  for (i = 0; i < localStorage.length; i++) {
+    pastActivityCards.innerHTML += `
+    <div class='card-container'>
+      <div class='card-header'>
+        <p class='card-category'>${JSON.parse(localStorage.getItem(localStorage.key(i))).category}</p>
+        <p class="card-duration">${JSON.parse(localStorage.getItem(localStorage.key(i))).savedMinutes} MIN : ${adjustSeconds(JSON.parse(localStorage.getItem(localStorage.key(i))).savedSeconds)} SEC</p>
+        <p class="card-body">${JSON.parse(localStorage.getItem(localStorage.key(i))).description}</p>
+      </div>
+        <div class = "sliver-${JSON.parse(localStorage.getItem(localStorage.key(i))).category}">
+      </div>
+    </div>
+    `
+    if (JSON.parse(localStorage.getItem(localStorage.key(i))).category === 'study') {
+      document.querySelector(".sliver-study").classList.add('sliver-green');
+    } else if (JSON.parse(localStorage.getItem(localStorage.key(i))).category === 'meditate') {
+      document.querySelector(".sliver-meditate").classList.add('sliver-purple');
+    } else if (JSON.parse(localStorage.getItem(localStorage.key(i))).category === 'exercise') {
+      document.querySelector('.sliver-exercise').classList.add('sliver-red');
+    }
+  }
+}
+
+function adjustSeconds(seconds) {
+  if (seconds < 10) {
+    return '0'+ seconds
+  } else {
+    return seconds;
+  }
+}
 
 function hideElement(element) {
   element.classList.add('hidden');
