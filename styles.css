@@ -198,10 +198,10 @@ input {
 .timer-page {
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
+  justify-content: space-evenly;
   align-items: center;
   height: 70%;
-  width: 40%;
+  width: 80%;
 }
 
 .time {
