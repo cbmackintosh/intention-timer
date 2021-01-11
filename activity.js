@@ -31,7 +31,7 @@ class Activity {
   }
   markComplete() {
   }
-  
+
   saveToStorage() {
   }
 };
