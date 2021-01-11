@@ -21,8 +21,6 @@ var activityError = document.querySelector('.activity-error');
 var minutesError = document.querySelector('.minutes-error');
 var secondsError = document.querySelector('.seconds-error');
 
-var lineError = document.querySelector('.warning-line');
-
 var timerActivityDescription = document.querySelector('.timer-activity-description');
 var timer = document.querySelector('.time');
 var startTimerButton = document.querySelector('.timer-circle-copy');
