@@ -18,7 +18,7 @@ class Activity {
       this.minutes -= 1;
       this.seconds = 59;
     } else if (this.minutes === 0 && this.seconds === 0) {
-      this.completed = true;
+      this.markComplete()
       showElement(logActivityButton);
       showElement(newActivityButton);
       return startTimerButton.innerText = `COMPLETE!`
@@ -29,7 +29,9 @@ class Activity {
       timer.innerText = `${this.minutes}:${this.seconds}`;
     }
   }
+
   markComplete() {
+    this.completed = true;
   }
 
   saveToStorage() {
