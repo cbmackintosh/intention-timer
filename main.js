@@ -29,10 +29,22 @@ var newActivityButton = document.querySelector('.create-new-activity-button')
 
 var pastActivityCards = document.querySelector('.past-activity-log')
 
-
+window.addEventListener('load', checkLocalStorage);
 startActivityButton.addEventListener('click', startActivityFunc);
 startTimerButton.addEventListener('click', startTimer);
-logActivityButton.addEventListener('click', showMyLogs)
+logActivityButton.addEventListener('click', saveActivityToLocalStorage)
+newActivityButton.addEventListener('click', resetForm);
+
+function resetForm() {
+  formContainer.classList.remove('hidden');
+  timerPage.classList.add('hidden');
+  activityTask.value = '';
+  activityMinutes.value = '';
+  activitySeconds.value = '';
+  deselectButton('exercise');
+  deselectButton('meditate');
+  deselectButton('study');
+}
 
 
 allCategoryButtons.addEventListener('click', function (event) {
@@ -74,8 +86,6 @@ function startActivityFunc() {
   } else {
     currentActivity = new Activity(currentActivity, activityTask.value, activityMinutes.value, activitySeconds.value, false);
     displayTimerPage();
-    activityCards.push(currentActivity)
-    console.log(activityCards, 'this is a new card');
   }
 };
 
@@ -112,9 +122,12 @@ function secondsErrorMessage() {
 };
 
 function displayTimerPage() {
-  startTimerButton.disabled = false; 
+  startTimerButton.disabled = false;
+  startTimerButton.innerText = 'START';
   formContainer.classList.add('hidden');
   timerPage.classList.remove('hidden');
+  logActivityButton.classList.add('hidden');
+  newActivityButton.classList.add('hidden');
   timerActivityDescription.innerText = activityTask.value;
   if (activitySeconds.value < 10) {
     timer.innerText = `${activityMinutes.value}:0${activitySeconds.value}`;
@@ -136,41 +149,61 @@ function changeTimerColor() {
 
 function startTimer() {
   startTimerButton.disabled = true;
-  setInterval(function () {
+  var interval = setInterval(function () {
     if (currentActivity.completed === false) {
-      currentActivity.countdown()   
-      //   if (currentActivity.completed === true) {
-    //     showElement(logActivityButton)
-    //   }
-    // }
+      currentActivity.countdown()
+    } else {
+      clearInterval(interval);
     }
-  }, 1000)
+  }, 1000);
 };
 
 
 
-function showMyLogs() {
-  activityCards.forEach(card => {
-    pastActivityCards.innerHTML = `
-    <div class="card-container">
-      <div class="card-header">
-        <p class="card-category">${currentActivity.category}</p>
-        <p class="card-duration">${currentActivity.minutes} MIN   :   ${currentActivity.seconds} SEC</p>
-        <p class="card-body">${currentActivity.description}</p>
+function saveActivityToLocalStorage() {
+  activityCards.push(currentActivity)
+  localStorage.setItem('activityCards', JSON.stringify(activityCards));
+  // localStorage.setItem(`${currentActivity.id}`, JSON.stringify(currentActivity));
+  pastActivityCards.innerHTML = '';
+  showMyLog();
+}
+
+
+function showMyLog() {
+  var cards = JSON.parse(localStorage.getItem('activityCards'));
+  if (cards != null) {
+    for (i = 0; i < cards.length; i++) {
+      pastActivityCards.innerHTML += `
+      <div class='card-container'>
+        <div class='card-header'>
+          <p class='card-category'>${cards[i].category}</p>
+          <p class="card-duration">${cards[i].savedMinutes} MIN : ${adjustSeconds(cards[i].savedSeconds)} SEC</p>
+          <p class="card-body">${cards[i].description}</p>
+        </div>
+          <div class = "sliver sliver-${cards[i].category}"></div>
+        </div>
       </div>
-      <div class="sliver"></div>
-    </div>
-    `
-    if (currentActivity.category === 'study') {
-      document.querySelector('.sliver').classList.add('sliver-green')
-    } else if (currentActivity.category === 'meditate') {
-      document.querySelector('.sliver').classList.add('sliver-purple')
-    } else if (currentActivity.category === 'exercise') {
-      document.querySelector('.sliver').classList.add('sliver-red')
+      `
     }
-  })
-};
+  }
+}
 
+function checkLocalStorage() {
+  if (!JSON.parse(localStorage.getItem('activityCards'))) {
+    activityCards = [];
+  } else {
+    activityCards = JSON.parse(localStorage.getItem('activityCards'));
+    showMyLog();
+  }
+}
+
+function adjustSeconds(seconds) {
+  if (seconds < 10) {
+    return '0'+ seconds
+  } else {
+    return seconds;
+  }
+}
 
 function hideElement(element) {
   element.classList.add('hidden');
@@ -179,4 +212,3 @@ function hideElement(element) {
 function showElement(element) {
   element.classList.remove('hidden');
 };
-
