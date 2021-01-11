@@ -37,22 +37,22 @@
                 Meditate
               </button>
             </div>
-            <p class='button-error hidden'><img class='warning' src='./assets/warning.svg'>Please select a category</p>
+            <p class='button-error hidden'><img class='warning' src='./assets/warning.svg' alt="error icon">Please select a category</p>
             <div class='activity'>
               <label for='activity-task'>What would you like to accomplish during this time?</label>
               <input class='activity-task' id='activity-task' type='text' placeholder='Describe your activity!'>
-              <p class='activity-error hidden'><img class='warning' src='./assets/warning.svg'>A description is required</p>
+              <p class='activity-error hidden'><img class='warning' src='./assets/warning.svg' alt="error icon">A description is required</p>
             </div>
             <div class='time-entry-container'>
               <div class='minutes'>
                 <label for='activity-minutes'>Minutes</label>
                 <input class='activity-minutes' id='activity-minutes' type='number' max='60'  min='0' placeholder='Enter minutes here' onkeydown="return false">
-                <p class='minutes-error hidden'><img class='warning' src='./assets/warning.svg'>This field is required</p>
+                <p class='minutes-error hidden'><img class='warning' src='./assets/warning.svg' alt="error icon">This field is required</p>
               </div>
               <div class='seconds'>
                 <label for='activity-seconds'>Seconds</label>
                 <input class='activity-seconds' id='activity-seconds' type='number' max='59'  min='0' step='5' placeholder='Enter seconds here' onkeydown="return false">
-                <p class='seconds-error hidden'><img class='warning' src='./assets/warning.svg'>This field is required</p>
+                <p class='seconds-error hidden'><img class='warning' src='./assets/warning.svg' alt="error icon">This field is required</p>
               </div>
             </div>
             <div class='start-button-container'>
@@ -78,8 +78,6 @@
         </div>
       </section>
     </main>
-      <div class="sliver"></div>
-    </div>
     <script type="text/javascript" src="./activity.js"></script>
     <script type="text/javascript" src="./main.js"></script>
   </body>
