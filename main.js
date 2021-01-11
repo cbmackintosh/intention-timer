@@ -100,24 +100,30 @@ function buttonErrorMessage() {
 function activityErrorMessage() {
   if (!activityTask.value) {
     showElement(activityError);
+    activityTask.classList.add('warning-line')
   } else {
     hideElement(activityError);
+    activityTask.classList.remove('warning-line')
   }
 };
 
 function minutesErrorMessage() {
   if (!activityMinutes.value) {
     showElement(minutesError);
+    activityMinutes.classList.add('warning-line')
   } else {
     hideElement(minutesError);
+    activityMinutes.classList.remove('warning-line')
   }
 };
 
 function secondsErrorMessage() {
   if (!activitySeconds.value) {
     showElement(secondsError);
+    activitySeconds.classList.add('warning-line')
   } else {
     hideElement(secondsError);
+    activitySeconds.classList.remove('warning-line')
   }
 };
 
@@ -158,16 +164,12 @@ function startTimer() {
   }, 1000);
 };
 
-
-
 function saveActivityToLocalStorage() {
   activityCards.push(currentActivity)
   localStorage.setItem('activityCards', JSON.stringify(activityCards));
-  // localStorage.setItem(`${currentActivity.id}`, JSON.stringify(currentActivity));
   pastActivityCards.innerHTML = '';
   showMyLog();
-}
-
+};
 
 function showMyLog() {
   var cards = JSON.parse(localStorage.getItem('activityCards'));
@@ -186,7 +188,7 @@ function showMyLog() {
       `
     }
   }
-}
+};
 
 function checkLocalStorage() {
   if (!JSON.parse(localStorage.getItem('activityCards'))) {
@@ -203,7 +205,7 @@ function adjustSeconds(seconds) {
   } else {
     return seconds;
   }
-}
+};
 
 function hideElement(element) {
   element.classList.add('hidden');

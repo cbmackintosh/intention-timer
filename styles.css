@@ -182,15 +182,21 @@ input {
 }
 
 .warning {
-  height: 10px;
-  width: 10px;
+  height: 20px;
+  width: 20px;
+  margin-right: 10px;
 }
+/* ******************************************************* */
+.warning-line {
+  border-bottom: 1px solid #f9ef90;
+}
+
 
 .button-error,
 .activity-error,
 .minutes-error,
 .seconds-error {
-  color: #EFB7EC;
+  color: #f9ef90
 }
 
 /* --------------------------------------------------->> */
@@ -332,7 +338,7 @@ input {
   height: 100%;
   width: 100%;
   text-align: center;
-  overflow: scroll;
+  /* overflow: scroll; */
 }
 
 /* --------------------------------------------------->> */

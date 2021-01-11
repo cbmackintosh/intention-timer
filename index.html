@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYPE html> 
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
@@ -15,7 +15,6 @@
       <section class='activity-section'>
         <h2>New Activity</h2>
         <div class='new-activity'>
-          <!-- need to add hidden class to class below for later use -->
           <form class='form-container'>
             <h3>Select a category</h3>
             <div class='category-buttons'>
@@ -24,35 +23,33 @@
                 <img class='icon study-active hidden' src='./assets/study-active.svg' alt='active study icon'>
                 Study
               </button>
-
               <button type="button" class="icon-exercise">
                 <img class='icon exercise' src='./assets/exercise.svg' alt='exercise icon'>
                 <img class='icon exercise-active hidden' src='./assets/exercise-active.svg' alt='active exercise icon'>
                 Exercise
               </button>
-
               <button type="button" class="icon-meditate">
                 <img class='icon meditate' src='./assets/meditate.svg' alt='meditate icon'>
                 <img class='icon meditate-active hidden' src='./assets/meditate-active.svg' alt='active meditate icon'>
                 Meditate
               </button>
             </div>
-            <p class='button-error hidden'><img class='warning' src='./assets/warning.svg' alt="error icon">Please select a category</p>
+            <p class='button-error hidden'><img class='warning' src='./assets/error-yellow.svg' alt="error icon">Please select a category</p>
             <div class='activity'>
               <label for='activity-task'>What would you like to accomplish during this time?</label>
               <input class='activity-task' id='activity-task' type='text' placeholder='Describe your activity!'>
-              <p class='activity-error hidden'><img class='warning' src='./assets/warning.svg' alt="error icon">A description is required</p>
+              <p class='activity-error hidden'><img class='warning' src='./assets/error-yellow.svg'>A description is required</p>
             </div>
             <div class='time-entry-container'>
               <div class='minutes'>
                 <label for='activity-minutes'>Minutes</label>
                 <input class='activity-minutes' id='activity-minutes' type='number' max='60'  min='0' placeholder='Enter minutes here' onkeydown="return false">
-                <p class='minutes-error hidden'><img class='warning' src='./assets/warning.svg' alt="error icon">This field is required</p>
+                <p class='minutes-error hidden'><img class='warning' src='./assets/error-yellow.svg' alt="error icon">This field is required</p>
               </div>
               <div class='seconds'>
                 <label for='activity-seconds'>Seconds</label>
                 <input class='activity-seconds' id='activity-seconds' type='number' max='59'  min='0' step='5' placeholder='Enter seconds here' onkeydown="return false">
-                <p class='seconds-error hidden'><img class='warning' src='./assets/warning.svg' alt="error icon">This field is required</p>
+                <p class='seconds-error hidden'><img class='warning' src='./assets/error-yellow.svg' alt="error icon">This field is required</p>
               </div>
             </div>
             <div class='start-button-container'>
