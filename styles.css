@@ -285,19 +285,19 @@ input {
   margin: 10px 10px 0 0;
 }
 
-.sliver-purple {
+.sliver-meditate {
   background: #C278FD;
   border-right: 2px solid #C278FD;
   border-left: 2px solid #C278FD;
 }
 
-.sliver-green {
+.sliver-study {
   background: #B3FD78;
   border-right: 2px solid #B3FD78;
   border-left: 2px solid #B3FD78;
 }
 
-.sliver-red {
+.sliver-exercise {
   background: #FD8078;
   border-right: 2px solid #FD8078;
   border-left: 2px solid #FD8078;

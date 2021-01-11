@@ -1,6 +1,9 @@
 
 var currentActivity;
+var currentCategory; 
+
 var activityCards = [];
+
 var formContainer = document.querySelector('.form-container');
 var timerPage = document.querySelector('.timer-page');
 
@@ -29,10 +32,15 @@ var newActivityButton = document.querySelector('.create-new-activity-button')
 
 var pastActivityCards = document.querySelector('.past-activity-log')
 
-
+logActivityButton.addEventListener('click', showMyLogs)
 startActivityButton.addEventListener('click', startActivityFunc);
 startTimerButton.addEventListener('click', startTimer);
-logActivityButton.addEventListener('click', showMyLogs)
+
+formContainer.addEventListener('click', function(event) {
+  if (event.target.className === 'timer-log-button') {
+    showMyLogs()
+  }
+});
 
 
 allCategoryButtons.addEventListener('click', function (event) {
@@ -51,12 +59,11 @@ allCategoryButtons.addEventListener('click', function (event) {
   }
 });
 
-
 function selectButton(activity) {
   document.querySelector(`img.${activity}`).classList.add('hidden');
   document.querySelector(`img.${activity}-active`).classList.remove('hidden');
   document.querySelector(`.icon-${activity}`).classList.add(`icon-${activity}-active`);
-  currentActivity = activity;
+  currentCategory = activity;
 };
 
 function deselectButton(activity) {
@@ -66,18 +73,21 @@ function deselectButton(activity) {
 };
 
 function startActivityFunc() {
-  if (!currentActivity || !activityTask.value || !activityMinutes.value || !activitySeconds.value) {
+  if (!currentCategory || !activityTask.value || !activityMinutes.value || !activitySeconds.value) {
     buttonErrorMessage();
     activityErrorMessage();
     minutesErrorMessage();
     secondsErrorMessage();
   } else {
-    currentActivity = new Activity(currentActivity, activityTask.value, activityMinutes.value, activitySeconds.value, false);
+    console.log(currentCategory,'cat');
+    currentActivity = new Activity(currentCategory, activityTask.value, activityMinutes.value, activitySeconds.value, false);
     displayTimerPage();
     activityCards.push(currentActivity)
-    console.log(activityCards, 'this is a new card');
+    // console.log(activityCards, 'this is a new card');
+    // console.log(currentActivity);
   }
 };
+
 
 function buttonErrorMessage() {
   if (!currentActivity) {
@@ -125,11 +135,11 @@ function displayTimerPage() {
 };
 
 function changeTimerColor() {
-  if (currentActivity.category === 'study') {
+  if (currentCategory === 'study') {
     document.querySelector('.timer-circle-outline').classList.add('study-color');
-  } else if (currentActivity.category === 'exercise') {
+  } else if (currentCategory === 'exercise') {
     document.querySelector('.timer-circle-outline').classList.add('exercise-color');
-  } else if (currentActivity.category === 'meditate') {
+  } else if (currentCategory === 'meditate') {
     document.querySelector('.timer-circle-outline').classList.add('meditate-color');
   }
 };
@@ -139,36 +149,26 @@ function startTimer() {
   setInterval(function () {
     if (currentActivity.completed === false) {
       currentActivity.countdown()   
-      //   if (currentActivity.completed === true) {
-    //     showElement(logActivityButton)
-    //   }
-    // }
     }
   }, 1000)
 };
 
-
-
 function showMyLogs() {
-  activityCards.forEach(card => {
+  for (var i = 0; activityCards.length; i++) {
+    var card = activityCards[i];
     pastActivityCards.innerHTML = `
     <div class="card-container">
-      <div class="card-header">
-        <p class="card-category">${currentActivity.category}</p>
-        <p class="card-duration">${currentActivity.minutes} MIN   :   ${currentActivity.seconds} SEC</p>
-        <p class="card-body">${currentActivity.description}</p>
-      </div>
-      <div class="sliver"></div>
+    <div class="card-header">
+    <p class="card-category">${card.category}</p>
+    <p class="card-duration">${card.minutes} MIN   :   ${card.seconds} SEC</p>
+    <p class="card-body">${card.description}</p>
+    </div>
+    <div class="sliver sliver-${card.category}"></div>
     </div>
     `
-    if (currentActivity.category === 'study') {
-      document.querySelector('.sliver').classList.add('sliver-green')
-    } else if (currentActivity.category === 'meditate') {
-      document.querySelector('.sliver').classList.add('sliver-purple')
-    } else if (currentActivity.category === 'exercise') {
-      document.querySelector('.sliver').classList.add('sliver-red')
-    }
-  })
+  }
+  // showElement(pastActivityCards) 
+  // currentActivity.saveToStorage()
 };
 
 
