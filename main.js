@@ -15,7 +15,6 @@ var activitySeconds = document.querySelector('.activity-seconds');
 var startActivityButton = document.querySelector('.start-activity');
 var startStopButton = document.querySelector('.start-stop-button');
 
-//var activityErrorMessage = document.querySelector('.activity-error'); delete?
 var buttonError = document.querySelector('.button-error');
 var activityError = document.querySelector('.activity-error');
 var minutesError = document.querySelector('.minutes-error');
@@ -26,8 +25,11 @@ var timer = document.querySelector('.time');
 var startTimerButton = document.querySelector('.timer-circle-copy');
 var logActivityButton = document.querySelector('.timer-log-button')
 var newActivityButton = document.querySelector('.create-new-activity-button')
-
 var pastActivityCards = document.querySelector('.past-activity-log')
+
+
+var emptyLog1 = document.querySelector('.empty-log1')
+var emptyLog2 = document.querySelector('.empty-log2')
 
 window.addEventListener('load', checkLocalStorage);
 startActivityButton.addEventListener('click', startActivityFunc);
@@ -191,11 +193,17 @@ function showMyLog() {
 function checkLocalStorage() {
   if (!JSON.parse(localStorage.getItem('activityCards'))) {
     activityCards = [];
+    showElement(emptyLog1)
+    showElement(emptyLog2) 
   } else {
     activityCards = JSON.parse(localStorage.getItem('activityCards'));
+    hideElement(emptyLog1)
+    hideElement(emptyLog2)
     showMyLog();
   }
 }
+
+
 
 function adjustSeconds(seconds) {
   if (seconds < 10) {
