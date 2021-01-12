@@ -10,8 +10,6 @@ class Activity {
     this.id = Date.now();
   }
   countdown() {
-    console.log(this.minutes);
-    console.log(this.seconds);
     if (this.seconds > 0) {
       this.seconds -= 1;
     } else if (this.minutes > 0 && this.seconds === 0) {
@@ -20,20 +18,23 @@ class Activity {
     } else if (this.minutes === 0 && this.seconds === 0) {
       var applause = new Audio("assets/applause.mp3");
       applause.play();
-      this.completed = true;
+      this.markComplete()
       showElement(logActivityButton);
       showElement(newActivityButton);
-      return startTimerButton.innerText = `COMPLETE!`
+      showComplete();
+      return;
     }
-    if (this.seconds < 10) {
-      timer.innerText = `${this.minutes}:0${this.seconds}`;
-    } else {
-      timer.innerText = `${this.minutes}:${this.seconds}`;
-    }
+    formatTimer(this.minutes, this.seconds);
   }
+
   markComplete() {
+    this.completed = true;
   }
 
   saveToStorage() {
+    activityCards.push(this)
+    localStorage.setItem('activityCards', JSON.stringify(activityCards));
+    clearPastActivityCards();
+    showMyLog();
   }
-};
+}
