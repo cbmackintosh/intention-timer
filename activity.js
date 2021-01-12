@@ -10,8 +10,6 @@ class Activity {
     this.id = Date.now();
   }
   countdown() {
-    console.log(this.minutes);
-    console.log(this.seconds);
     if (this.seconds > 0) {
       this.seconds -= 1;
     } else if (this.minutes > 0 && this.seconds === 0) {
@@ -23,6 +21,7 @@ class Activity {
       showElement(newActivityButton);
       return startTimerButton.innerText = `COMPLETE!`
     }
+
     if (this.seconds < 10) {
       timer.innerText = `${this.minutes}:0${this.seconds}`;
     } else {
