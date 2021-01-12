@@ -19,14 +19,10 @@ class Activity {
       this.markComplete()
       showElement(logActivityButton);
       showElement(newActivityButton);
-      return startTimerButton.innerText = `COMPLETE!`
+      showComplete();
+      return;
     }
-
-    if (this.seconds < 10) {
-      timer.innerText = `${this.minutes}:0${this.seconds}`;
-    } else {
-      timer.innerText = `${this.minutes}:${this.seconds}`;
-    }
+    formatTimer(this.minutes, this.seconds);
   }
 
   markComplete() {
@@ -36,7 +32,7 @@ class Activity {
   saveToStorage() {
     activityCards.push(this)
     localStorage.setItem('activityCards', JSON.stringify(activityCards));
-    pastActivityCards.innerHTML = '';
+    clearPastActivityCards();
     showMyLog();
   }
-};
+}
