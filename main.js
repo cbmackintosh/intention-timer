@@ -183,14 +183,14 @@ function showMyLog() {
 }
 
 function checkLocalStorage() {
-  if (!JSON.parse(localStorage.getItem('activityCards'))) {
+  if (!JSON.parse(localStorage.getItem("activityCards"))) {
     activityCards = [];
-    document.querySelector('.empty-log1').classList.remove('hidden');
-    document.querySelector('.empty-log2').classList.remove('hidden');
+    document.querySelector(".empty-log1").classList.remove("hidden");
+    document.querySelector(".empty-log2").classList.remove("hidden");
   } else {
-    activityCards = JSON.parse(localStorage.getItem('activityCards'));
-    document.querySelector('.empty-log1').classList.add('hidden');
-    document.querySelector('.empty-log2').classList.add('hidden');
+    activityCards = JSON.parse(localStorage.getItem("activityCards"));
+    document.querySelector(".empty-log1").classList.add("hidden");
+    document.querySelector(".empty-log2").classList.add("hidden");
     showMyLog();
   }
 }
