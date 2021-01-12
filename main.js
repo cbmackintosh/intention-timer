@@ -158,6 +158,8 @@ function showComplete() {
 
 function startTimer() {
   startTimerButton.disabled = true;
+  var clickSound = new Audio("assets/click2.mp3");
+  clickSound.play();
   var interval = setInterval(function () {
     if (currentActivity.completed === false) {
       currentActivity.countdown();

@@ -16,6 +16,8 @@ class Activity {
       this.minutes -= 1;
       this.seconds = 59;
     } else if (this.minutes === 0 && this.seconds === 0) {
+      var applause = new Audio("assets/applause.mp3");
+      applause.play();
       this.markComplete()
       showElement(logActivityButton);
       showElement(newActivityButton);
