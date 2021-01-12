@@ -1,8 +1,6 @@
-// *** global storage variables ***
 var currentActivity;
 var activityCards = [];
 
-// *** selectors ***
 var formContainer = document.querySelector(".form-container");
 var timerPage = document.querySelector(".timer-page");
 var allCategoryButtons = document.querySelector(".category-buttons");
@@ -21,7 +19,6 @@ var logActivityButton = document.querySelector(".timer-log-button");
 var newActivityButton = document.querySelector(".create-new-activity-button");
 var pastActivityCards = document.querySelector(".past-activity-log");
 
-// *** event listeners ***
 window.addEventListener("load", checkLocalStorage);
 startActivityButton.addEventListener("click", startActivityFunc);
 startTimerButton.addEventListener("click", startTimer);
@@ -42,9 +39,8 @@ allCategoryButtons.addEventListener("click", function (event) {
     deselectButton("exercise");
     selectButton("meditate");
   }
-});
+})
 
-// *** helper functions ***
 function resetForm() {
   formContainer.classList.remove("hidden");
   timerPage.classList.add("hidden");
@@ -135,6 +131,7 @@ function displayTimerPage() {
   changeTimerColor()
 }
 
+
 function changeTimerColor() {
   if (currentActivity.category === "study") {
     document.querySelector(".timer-circle-outline").classList.add("study-color");
@@ -149,7 +146,7 @@ function startTimer() {
   startTimerButton.disabled = true;
   var interval = setInterval(function () {
     if (currentActivity.completed === false) {
-      currentActivity.countdown()
+      currentActivity.countdown();
     } else {
       clearInterval(interval);
     }
@@ -157,10 +154,7 @@ function startTimer() {
 }
 
 function saveActivityToLocalStorage() {
-  activityCards.push(currentActivity)
-  localStorage.setItem("activityCards", JSON.stringify(activityCards));
-  pastActivityCards.innerHTML = "";
-  showMyLog();
+  currentActivity.saveToStorage();
 }
 
 function showMyLog() {
@@ -185,19 +179,19 @@ function showMyLog() {
 function checkLocalStorage() {
   if (!JSON.parse(localStorage.getItem("activityCards"))) {
     activityCards = [];
-    document.querySelector(".empty-log1").classList.remove("hidden");
-    document.querySelector(".empty-log2").classList.remove("hidden");
+    showElement(emptyLog1);
+    showElement(emptyLog2);
   } else {
-    activityCards = JSON.parse(localStorage.getItem("activityCards"));
-    document.querySelector(".empty-log1").classList.add("hidden");
-    document.querySelector(".empty-log2").classList.add("hidden");
+    activityCards = JSON.parse(localStorage.getItem('activityCards'));
+    hideElement(emptyLog1);
+    hideElement(emptyLog2);
     showMyLog();
   }
 }
 
 function adjustSeconds(seconds) {
   if (seconds < 10) {
-    return "0"+ seconds
+    return '0' + seconds;
   } else {
     return seconds;
   }

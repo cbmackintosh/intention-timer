@@ -16,7 +16,7 @@ class Activity {
       this.minutes -= 1;
       this.seconds = 59;
     } else if (this.minutes === 0 && this.seconds === 0) {
-      this.completed = true;
+      this.markComplete()
       showElement(logActivityButton);
       showElement(newActivityButton);
       return startTimerButton.innerText = `COMPLETE!`
@@ -30,8 +30,13 @@ class Activity {
   }
 
   markComplete() {
+    this.completed = true;
   }
 
   saveToStorage() {
+    activityCards.push(this)
+    localStorage.setItem('activityCards', JSON.stringify(activityCards));
+    pastActivityCards.innerHTML = '';
+    showMyLog();
   }
 };
