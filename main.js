@@ -49,16 +49,8 @@ function resetForm() {
   timerPage.classList.add("hidden");
   formContainer.reset();
   currentCategory = null;
-  hideElement(buttonError);
-  hideElement(activityError);
-  hideElement(minutesError);
-  hideElement(secondsError);
-  deselectButton("exercise");
-  deselectButton("meditate");
-  deselectButton("study");
-  activityTask.classList.remove('warning-line');
-  activityMinutes.classList.remove('warning-line');
-  activitySeconds.classList.remove('warning-line');
+  hideErrorMessages();
+  deselectAllCategoryButtons();
 }
 
 function selectButton(activity) {
@@ -74,8 +66,14 @@ function deselectButton(activity) {
   document.querySelector(`.icon-${activity}`).classList.remove(`icon-${activity}-active`);
 }
 
+function deselectAllCategoryButtons() {
+  deselectButton("exercise");
+  deselectButton("meditate");
+  deselectButton("study");
+}
+
 function startActivityFunc() {
-  if (!currentCategory || !activityTask.value || !activityMinutes.value || !activitySeconds.value) {
+  if (!currentCategory || !activityTask.value || !activityMinutes.value || !activitySeconds.value || (activityMinutes.value === '0' && activitySeconds.value === '0')) {
     buttonErrorMessage();
     activityErrorMessage();
     minutesErrorMessage();
@@ -97,30 +95,30 @@ function buttonErrorMessage() {
 function activityErrorMessage() {
   if (!activityTask.value) {
     showElement(activityError);
-    activityTask.classList.add("warning-line")
+    activityTask.classList.add("warning-line");
   } else {
     hideElement(activityError);
-    activityTask.classList.remove("warning-line")
+    activityTask.classList.remove("warning-line");
   }
 }
 
 function minutesErrorMessage() {
-  if (!activityMinutes.value) {
+  if (!activityMinutes.value || (activityMinutes.value === '0' && activitySeconds.value === '0')) {
     showElement(minutesError);
-    activityMinutes.classList.add("warning-line")
+    activityMinutes.classList.add("warning-line");
   } else {
     hideElement(minutesError);
-    activityMinutes.classList.remove("warning-line")
+    activityMinutes.classList.remove("warning-line");
   }
 }
 
 function secondsErrorMessage() {
-  if (!activitySeconds.value) {
+  if (!activitySeconds.value || (activityMinutes.value === '0' && activitySeconds.value === '0')) {
     showElement(secondsError);
-    activitySeconds.classList.add("warning-line")
+    activitySeconds.classList.add("warning-line");
   } else {
     hideElement(secondsError);
-    activitySeconds.classList.remove("warning-line")
+    activitySeconds.classList.remove("warning-line");
   }
 }
 
@@ -129,10 +127,10 @@ function displayTimerPage() {
   logActivityButton.classList.remove('button-disabled');
   startTimerButton.disabled = false;
   startTimerButton.innerText = "START";
-  formContainer.classList.add("hidden");
-  timerPage.classList.remove("hidden");
-  logActivityButton.classList.add("hidden");
-  newActivityButton.classList.add("hidden");
+  hideElement(formContainer) //formContainer.classList.add("hidden");
+  showElement(timerPage) //timerPage.classList.remove("hidden");
+  hideElement(logActivityButton) //logActivityButton.classList.add("hidden");
+  hideElement(newActivityButton) //newActivityButton.classList.add("hidden");
   timerActivityDescription.innerText = activityTask.value;
   formatTimer(activityMinutes.value, activitySeconds.value);
   changeTimerColor()
@@ -215,6 +213,16 @@ function adjustSeconds(seconds) {
   } else {
     return seconds;
   }
+}
+
+function hideErrorMessages() {
+  hideElement(buttonError);
+  hideElement(activityError);
+  hideElement(minutesError);
+  hideElement(secondsError);
+  activityTask.classList.remove('warning-line');
+  activityMinutes.classList.remove('warning-line');
+  activitySeconds.classList.remove('warning-line');
 }
 
 function hideElement(element) {
