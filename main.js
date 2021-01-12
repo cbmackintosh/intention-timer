@@ -45,6 +45,9 @@ function resetForm() {
   deselectButton('exercise');
   deselectButton('meditate');
   deselectButton('study');
+  hideElement(buttonError);
+  hideElement(minutesError);
+  hideElement(secondsError);
 };
 
 allCategoryButtons.addEventListener('click', function (event) {
