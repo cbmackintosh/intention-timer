@@ -15,7 +15,6 @@ var activitySeconds = document.querySelector('.activity-seconds');
 var startActivityButton = document.querySelector('.start-activity');
 var startStopButton = document.querySelector('.start-stop-button');
 
-//var activityErrorMessage = document.querySelector('.activity-error'); delete?
 var buttonError = document.querySelector('.button-error');
 var activityError = document.querySelector('.activity-error');
 var minutesError = document.querySelector('.minutes-error');
@@ -24,10 +23,12 @@ var secondsError = document.querySelector('.seconds-error');
 var timerActivityDescription = document.querySelector('.timer-activity-description');
 var timer = document.querySelector('.time');
 var startTimerButton = document.querySelector('.timer-circle-copy');
-var logActivityButton = document.querySelector('.timer-log-button')
-var newActivityButton = document.querySelector('.create-new-activity-button')
+var logActivityButton = document.querySelector('.timer-log-button');
+var newActivityButton = document.querySelector('.create-new-activity-button');
+var pastActivityCards = document.querySelector('.past-activity-log');
 
-var pastActivityCards = document.querySelector('.past-activity-log')
+var emptyLog1 = document.querySelector('.empty-log1');
+var emptyLog2 = document.querySelector('.empty-log2');
 
 window.addEventListener('load', checkLocalStorage);
 startActivityButton.addEventListener('click', startActivityFunc);
@@ -44,8 +45,10 @@ function resetForm() {
   deselectButton('exercise');
   deselectButton('meditate');
   deselectButton('study');
-}
-
+  hideElement(buttonError);
+  hideElement(minutesError);
+  hideElement(secondsError);
+};
 
 allCategoryButtons.addEventListener('click', function (event) {
   if (event.target.className === 'icon-study' || event.target.className === 'icon study') {
@@ -62,7 +65,6 @@ allCategoryButtons.addEventListener('click', function (event) {
     selectButton('meditate');
   }
 });
-
 
 function selectButton(activity) {
   document.querySelector(`img.${activity}`).classList.add('hidden');
@@ -100,30 +102,30 @@ function buttonErrorMessage() {
 function activityErrorMessage() {
   if (!activityTask.value) {
     showElement(activityError);
-    activityTask.classList.add('warning-line')
+    activityTask.classList.add('warning-line');
   } else {
     hideElement(activityError);
-    activityTask.classList.remove('warning-line')
+    activityTask.classList.remove('warning-line');
   }
 };
 
 function minutesErrorMessage() {
   if (!activityMinutes.value) {
     showElement(minutesError);
-    activityMinutes.classList.add('warning-line')
+    activityMinutes.classList.add('warning-line');
   } else {
     hideElement(minutesError);
-    activityMinutes.classList.remove('warning-line')
+    activityMinutes.classList.remove('warning-line');
   }
 };
 
 function secondsErrorMessage() {
   if (!activitySeconds.value) {
     showElement(secondsError);
-    activitySeconds.classList.add('warning-line')
+    activitySeconds.classList.add('warning-line');
   } else {
     hideElement(secondsError);
-    activitySeconds.classList.remove('warning-line')
+    activitySeconds.classList.remove('warning-line');
   }
 };
 
@@ -140,7 +142,7 @@ function displayTimerPage() {
   } else {
     timer.innerText = `${activityMinutes.value}:${activitySeconds.value}`;
   }
-  changeTimerColor()
+  changeTimerColor();
 };
 
 function changeTimerColor() {
@@ -157,7 +159,7 @@ function startTimer() {
   startTimerButton.disabled = true;
   var interval = setInterval(function () {
     if (currentActivity.completed === false) {
-      currentActivity.countdown()
+      currentActivity.countdown();
     } else {
       clearInterval(interval);
     }
@@ -165,10 +167,7 @@ function startTimer() {
 };
 
 function saveActivityToLocalStorage() {
-  activityCards.push(currentActivity)
-  localStorage.setItem('activityCards', JSON.stringify(activityCards));
-  pastActivityCards.innerHTML = '';
-  showMyLog();
+  currentActivity.saveToStorage();
 };
 
 function showMyLog() {
@@ -193,15 +192,19 @@ function showMyLog() {
 function checkLocalStorage() {
   if (!JSON.parse(localStorage.getItem('activityCards'))) {
     activityCards = [];
+    showElement(emptyLog1);
+    showElement(emptyLog2);
   } else {
     activityCards = JSON.parse(localStorage.getItem('activityCards'));
+    hideElement(emptyLog1);
+    hideElement(emptyLog2);
     showMyLog();
   }
-}
+};
 
 function adjustSeconds(seconds) {
   if (seconds < 10) {
-    return '0'+ seconds
+    return '0' + seconds;
   } else {
     return seconds;
   }
