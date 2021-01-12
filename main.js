@@ -127,10 +127,10 @@ function displayTimerPage() {
   logActivityButton.classList.remove('button-disabled');
   startTimerButton.disabled = false;
   startTimerButton.innerText = "START";
-  hideElement(formContainer) //formContainer.classList.add("hidden");
-  showElement(timerPage) //timerPage.classList.remove("hidden");
-  hideElement(logActivityButton) //logActivityButton.classList.add("hidden");
-  hideElement(newActivityButton) //newActivityButton.classList.add("hidden");
+  hideElement(formContainer);
+  showElement(timerPage);
+  hideElement(logActivityButton);
+  hideElement(newActivityButton);
   timerActivityDescription.innerText = activityTask.value;
   formatTimer(activityMinutes.value, activitySeconds.value);
   changeTimerColor()
