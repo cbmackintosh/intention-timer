@@ -28,6 +28,7 @@ var logActivityButton = document.querySelector('.timer-log-button')
 var newActivityButton = document.querySelector('.create-new-activity-button')
 
 var pastActivityCards = document.querySelector('.past-activity-log')
+var cardBubblerSelector = document.querySelector('section.past-activity')
 
 window.addEventListener('load', checkLocalStorage);
 startActivityButton.addEventListener('click', startActivityFunc);
@@ -176,19 +177,37 @@ function showMyLog() {
   if (cards != null) {
     for (i = 0; i < cards.length; i++) {
       pastActivityCards.innerHTML += `
-      <div class='card-container'>
-        <div class='card-header'>
-          <p class='card-category'>${cards[i].category}</p>
-          <p class="card-duration">${cards[i].savedMinutes} MIN : ${adjustSeconds(cards[i].savedSeconds)} SEC</p>
-          <p class="card-body">${cards[i].description}</p>
+      <div class='card-container' data-id="${cards[i].id}">
+        <div class='card-header' data-id="${cards[i].id}">
+          <p class='card-category' data-id="${cards[i].id}">${cards[i].category}</p>
+          <p class="card-duration" data-id="${cards[i].id}">${cards[i].savedMinutes} MIN : ${adjustSeconds(cards[i].savedSeconds)} SEC</p>
+          <p class="card-body" data-id="${cards[i].id}">${cards[i].description}</p>
         </div>
-          <div class = "sliver sliver-${cards[i].category}"></div>
+          <div class="sliver sliver-${cards[i].category}" data-id="${cards[i].id}"></div>
         </div>
       </div>
       `
     }
   }
 };
+
+cardBubblerSelector.addEventListener('dblclick', function(e) {
+  var deleteThisCard = e.target.getAttribute('data-id')
+
+  console.log("CARD CLICKED ON ", deleteThisCard)
+
+  // update global array with new version sans the card clicked
+  for (let i = 0; i < activityCards.length; i++) {
+    console.log("ACTCARDS[i]: ", activityCards[i])
+    if (activityCards[i] === deleteThisCard) {
+      activityCards[i].splice(i, 1)
+    }
+  }
+  return activityCards
+  // update the log to reflect a removed card
+
+})
+
 
 function checkLocalStorage() {
   if (!JSON.parse(localStorage.getItem('activityCards'))) {
