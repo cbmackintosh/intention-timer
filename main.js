@@ -155,8 +155,8 @@ function changeTimerColor() {
 
 function startTimer() {
   startTimerButton.disabled = true;
-  var readyGo = new Audio("assets/readygo.mp3");
-  readyGo.play();
+  var clickSound = new Audio("assets/click2.mp3");
+  clickSound.play();
   var interval = setInterval(function () {
     if (currentActivity.completed === false) {
       currentActivity.countdown()
