@@ -1,10 +1,12 @@
 var currentActivity;
-var currentCategory;
 var activityCards = [];
 
 var formContainer = document.querySelector(".form-container");
 var timerPage = document.querySelector(".timer-page");
 var allCategoryButtons = document.querySelector(".category-buttons");
+var studyButton = document.querySelector(".icon-study");
+var exerciseButton = document.querySelector(".icon-exercise");
+var meditateButton = document.querySelector(".icon-meditate");
 var activityTask = document.querySelector(".activity-task");
 var activityMinutes = document.querySelector(".activity-minutes");
 var activitySeconds = document.querySelector(".activity-seconds");
@@ -23,6 +25,7 @@ var emptyLog1 = document.querySelector('.empty-log1');
 var emptyLog2 = document.querySelector('.empty-log2');
 
 window.addEventListener("load", checkLocalStorage);
+window.addEventListener("load", deselectAllCategoryButtons);
 startActivityButton.addEventListener("click", startActivityFunc);
 startTimerButton.addEventListener("click", startTimer);
 logActivityButton.addEventListener("click", saveActivityToLocalStorage);
@@ -45,10 +48,9 @@ allCategoryButtons.addEventListener("click", function (event) {
 })
 
 function resetForm() {
-  formContainer.classList.remove("hidden");
-  timerPage.classList.add("hidden");
+  showElement(formContainer);
+  hideElement(timerPage);
   formContainer.reset();
-  currentCategory = null;
   hideErrorMessages();
   deselectAllCategoryButtons();
 }
@@ -57,13 +59,14 @@ function selectButton(activity) {
   document.querySelector(`img.${activity}`).classList.add("hidden");
   document.querySelector(`img.${activity}-active`).classList.remove("hidden");
   document.querySelector(`.icon-${activity}`).classList.add(`icon-${activity}-active`);
-  currentCategory = activity;
+  document.querySelector(`.icon-${activity}`).disabled = true;
 }
 
 function deselectButton(activity) {
   document.querySelector(`img.${activity}`).classList.remove("hidden");
   document.querySelector(`img.${activity}-active`).classList.add("hidden");
   document.querySelector(`.icon-${activity}`).classList.remove(`icon-${activity}-active`);
+  document.querySelector(`.icon-${activity}`).disabled = false;
 }
 
 function deselectAllCategoryButtons() {
@@ -72,20 +75,32 @@ function deselectAllCategoryButtons() {
   deselectButton("study");
 }
 
+function findSelectedCategory() {
+  if (studyButton.disabled === true) {
+    return "study";
+  } else if (exerciseButton.disabled === true) {
+    return "exercise";
+  } else if (meditateButton.disabled === true) {
+    return "meditate";
+  } else {
+    return null;
+  }
+}
+
 function startActivityFunc() {
-  if (!currentCategory || !activityTask.value || !activityMinutes.value || !activitySeconds.value || (activityMinutes.value === '0' && activitySeconds.value === '0')) {
+  if (findSelectedCategory() === null || !activityTask.value || !activityMinutes.value || !activitySeconds.value || (activityMinutes.value === '0' && activitySeconds.value === '0')) {
     buttonErrorMessage();
     activityErrorMessage();
     minutesErrorMessage();
     secondsErrorMessage();
   } else {
-    currentActivity = new Activity(currentCategory, activityTask.value, activityMinutes.value, activitySeconds.value, false);
+    currentActivity = new Activity(findSelectedCategory(), activityTask.value, activityMinutes.value, activitySeconds.value, false);
     displayTimerPage();
   }
 }
 
 function buttonErrorMessage() {
-  if (!currentCategory) {
+  if (findSelectedCategory() === null) {
     showElement(buttonError);
   } else {
     hideElement(buttonError);
