@@ -261,6 +261,7 @@ input {
   height: 100px;
   background: #46424D;
   border-radius: 5px;
+  box-shadow: 12px 12px 2px 1px #26222D;
   color: white;
   display: flex;
   flex-flow: row nowrap;
